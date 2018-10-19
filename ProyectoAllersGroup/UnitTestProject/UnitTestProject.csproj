@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98FD21E5-6950-4A4A-AD57-1035FEE16C79}</ProjectGuid>
+    <ProjectGuid>{8D343012-4628-4352-9734-AAAE321E31AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTestProject</RootNamespace>
@@ -55,9 +55,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Algorithms\Modelo.csproj">
-      <Project>{5ed2efe0-355b-45f0-815a-3174f3a39789}</Project>
-      <Name>Algorithms</Name>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{e27bd0c4-6373-41ce-9005-4e28cb51e75a}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

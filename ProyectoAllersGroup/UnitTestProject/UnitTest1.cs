@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Algorithms;
+using Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTestProject
