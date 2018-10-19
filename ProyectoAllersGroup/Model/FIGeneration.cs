@@ -147,9 +147,9 @@ namespace Model
             List<ItemSet> toRemove= new List<ItemSet>();
             foreach(ItemSet itemset in candidates)
             {
-                if ((itemset.countSupport < minsup * datos.transactions.Count))
+                if ((itemset.support < minsup * datos.transactions.Count))
                 {
-                    Console.WriteLine("Pruning -"+itemset+ "- soporte del candidato: "+itemset.countSupport + " Soporte minimo: " + minsup*datos.transactions.Count);
+                    Console.WriteLine("Pruning -"+itemset+ "- soporte del candidato: "+itemset.support + " Soporte minimo: " + minsup*datos.transactions.Count);
                     //fItemSets.Add(itemset);
                     toRemove.Add(itemset);
                 }

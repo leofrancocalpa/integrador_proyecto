@@ -12,25 +12,26 @@ namespace Model
         private String routeArticulos = "..\\..\\..\\Data\\Articulos.csv";
         private String routeClientes = "..\\..\\..\\Data\\Clientes.csv";
         private String routeVentas = "..\\..\\..\\Data\\Ventas.csv";
-        private String routeFI = "..\\..\\..\\Data\\FrequentItems.csv";
+        //private String routeFI = "..\\..\\..\\Data\\FrequentItems.csv";
 
-        private double minSupport;
+        //private double minSupport;
         private String route;
 
         public Dictionary<String, Item> items { get; set; }
         public Dictionary<String, Transaction> transactions { get; set; }
-        public Dictionary<String, Item> frequentItems { get; set; }
+        public Dictionary<String, Cliente> clientes { get; set; }
+        //public Dictionary<String, Item> frequentItems { get; set; }
 
-        public Data(double minS)
+        public Data()
         {
-            minSupport = minS;
+            //minSupport = minS;
             items = new Dictionary<String, Item>();
             transactions = new Dictionary<string, Transaction>();
-            frequentItems = new Dictionary<string, Item>();
+            clientes= new Dictionary<string, Cliente>();
             route = routeVentas;
         }
 
-        public void LoadTransactions()
+        public void LoadTransaction()
         {
             try
             {
@@ -82,18 +83,19 @@ namespace Model
             }
         }
 
-        public Dictionary<String, Item> FiltrarPorSupport()
+        public Dictionary<String, Item> PodarItemsPorSupport(int minSupport)
         {
-            //Dictionary<String, Item> frequentItems = new Dictionary<string, Item>();
+            Dictionary<String, Item> frequentItems = new Dictionary<string, Item>();
             foreach(KeyValuePair<String, Item> pairs in items)
             {
-                int c = pairs.Value.countSupport;
+                int c = pairs.Value.support;
                 //Console.WriteLine(pairs.Key + " " + c);
                 if (c>=(minSupport*transactions.Count))
                 {
                     frequentItems.Add(pairs.Key, pairs.Value);
                 }
             }
+            items = frequentItems;
             Console.WriteLine("Items frecuentes: " + frequentItems.Count);
             return frequentItems;
             
@@ -102,6 +104,16 @@ namespace Model
         public void loadDataTest()
         {
             route = "..\\..\\..\\Data\\datosTest.csv";
+        }
+
+        public void PodarTransacciones()
+        {
+
+        }
+
+        public void PodarClientes()
+        {
+
         }
     }
 }

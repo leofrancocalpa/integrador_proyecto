@@ -10,17 +10,17 @@ namespace Model
     public class ItemSet 
     {
         public Dictionary<String, Item> items { get; set; }
-        public int countSupport { get; set; }
+        public int support { get; set; }
 
         public ItemSet()
         {
             items = new Dictionary<string, Item>();
-            countSupport = 0;
+            support = 0;
         }
 
         public void IncreaseSupport()
         {
-            countSupport+=1;
+            support+=1;
         }
 
         public Boolean ContainsItems(Dictionary<String, Item> evaluated)

@@ -10,19 +10,19 @@ namespace Model
     {
         public String cod { get; set; }
         public String name { get; set; }
-        public int countSupport { get; set; }
-        public Boolean candidate { get; set; }
+        public double price { get; set; }
+        public int support { get; set; }
 
         public Item(String cod)
         {
             this.cod = cod;
             this.name = "";
-            countSupport = 0;
+            support = 0;
         }
 
         public void IncreaserCount()
         {
-            countSupport++;
+            support++;
         }
     }
 }

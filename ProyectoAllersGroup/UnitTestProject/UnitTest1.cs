@@ -45,7 +45,7 @@ namespace UnitTestProject
 
                 if (esperados.ContainsKey(cadena))
                 {
-                  Boolean op =  candidatoFrecuente.countSupport == esperados[cadena];
+                  Boolean op =  candidatoFrecuente.support == esperados[cadena];
                   Assert.IsTrue(op);
                 }
                 else
