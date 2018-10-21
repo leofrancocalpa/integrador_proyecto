@@ -31,7 +31,7 @@ namespace Model
             route = routeVentas;
         }
 
-        public void LoadTransaction()
+        public void LoadTransactions()
         {
             try
             {
@@ -83,7 +83,7 @@ namespace Model
             }
         }
 
-        public Dictionary<String, Item> PodarItemsPorSupport(int minSupport)
+        public Dictionary<String, Item> PodarItemsPorSupport(double minSupport)
         {
             Dictionary<String, Item> frequentItems = new Dictionary<string, Item>();
             foreach(KeyValuePair<String, Item> pairs in items)

@@ -8,16 +8,16 @@ namespace Model
 {
     public class FIGeneration
     {
-        private double minsup;
+        private double minSupport;
         private Data datos;
         public List<ItemSet> candidates { get; set; }
         public List<ItemSet> fItemSets { get; set; }
 
         //Constructor
-        public FIGeneration(double minSupport, Boolean test)
+        public FIGeneration(double minSup, Boolean test)
         {
-            minsup = minSupport/100;
-            datos = new Data(minsup);
+            minSupport = minSup/100;
+            datos = new Data();
             if (test)
             {
                 datos.loadDataTest();
@@ -55,7 +55,7 @@ namespace Model
         public void AprioriFrequentItemGeneration()
         {
             int k = 1; // size k of itemset (k-itemset)
-            Dictionary<String, Item> Fk = datos.FiltrarPorSupport();
+            Dictionary<String, Item> Fk = datos.PodarItemsPorSupport(minSupport);
 
             Console.WriteLine("Numero de candidatos T0: " + candidates.Count+" fk "+Fk.Count);
             while (k <= Fk.Count)
@@ -110,7 +110,7 @@ namespace Model
         }
 
         //FuerzaBurta
-        public IEnumerable<ItemSet> SupportCounter(List<ItemSet> candidates)
+        public void SupportCounter(List<ItemSet> candidates)
         {
             Dictionary<String, Transaction> transactions = datos.transactions;
             foreach (ItemSet itemset in candidates)
@@ -139,17 +139,16 @@ namespace Model
                 itemset.items.ToList().ForEach(x => ite += x.Key + " ");
                // Console.WriteLine("Entro: " +  " " + itemset.countSupport + " <" + ite);
             }
-            return null;// fItemSets;
         }
         
-        public IEnumerable<ItemSet> pruning(List<ItemSet> candidates)
+        public void pruning(List<ItemSet> candidates)
         {
             List<ItemSet> toRemove= new List<ItemSet>();
             foreach(ItemSet itemset in candidates)
             {
-                if ((itemset.support < minsup * datos.transactions.Count))
+                if ((itemset.support < minSupport * datos.transactions.Count))
                 {
-                    Console.WriteLine("Pruning -"+itemset+ "- soporte del candidato: "+itemset.support + " Soporte minimo: " + minsup*datos.transactions.Count);
+                    Console.WriteLine("Pruning -"+itemset+ "- soporte del candidato: "+itemset.support + " Soporte minimo: " + minSupport*datos.transactions.Count);
                     //fItemSets.Add(itemset);
                     toRemove.Add(itemset);
                 }
@@ -159,7 +158,6 @@ namespace Model
                 candidates.Remove(IS);
             }
             //Console.WriteLine("--+"+candidates.Count);
-            return candidates;
         }
     }
 }
