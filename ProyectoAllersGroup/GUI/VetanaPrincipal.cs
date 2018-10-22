@@ -8,18 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+
 namespace GUI
 {
-    public partial class MainForm : Form
+    public partial class VetanaPrincipal : Form
     {
         private Data inicial;
-        public MainForm()
+        public VetanaPrincipal()
         {
             InitializeComponent();
             inicial = new Data();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void VetanaPrincipal_Load(object sender, EventArgs e)
         {
 
         }

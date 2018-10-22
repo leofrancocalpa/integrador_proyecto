@@ -19,7 +19,8 @@ namespace Model
 
         public Dictionary<String, Item> items { get; set; }
         public Dictionary<String, Transaction> transactions { get; set; }
-        public Dictionary<String, Cliente> clientes { get; set; }
+       // public Dictionary<String, Cliente> clientes { get; set; }
+        public Dictionary<int,Cliente> clientes { get; set; }
         //public Dictionary<String, Item> frequentItems { get; set; }
 
         public Data()
@@ -27,10 +28,41 @@ namespace Model
             //minSupport = minS;
             items = new Dictionary<String, Item>();
             transactions = new Dictionary<string, Transaction>();
-            clientes= new Dictionary<string, Cliente>();
+            clientes = new Dictionary<int, Cliente>();
             route = routeVentas;
+            LoadClientes();
         }
+        public void LoadClientes()
+        {
+            try
+            {
+                StreamReader sr = new StreamReader(routeVentas);
+                String line = sr.ReadLine();
+                line = sr.ReadLine();
+                String cliente = "";
+                int c = 0;
+                while (line != null)
+                {
+                    String[] datos = line.Split(';');
+                    Cliente actual = new Cliente(datos[0]);
+                    if (!(actual.codigo.Equals(cliente)))
+                    {
+                        clientes.Add(c, actual);
+                        cliente = actual.codigo;
+                        c++;
+                    }
+                    else
+                    {
+                        line = sr.ReadLine();
+                    }
+                     }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
         public void LoadTransactions()
         {
             try
