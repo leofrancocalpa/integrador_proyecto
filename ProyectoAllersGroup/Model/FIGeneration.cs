@@ -9,7 +9,7 @@ namespace Model
     public class FIGeneration
     {
         private double minSupport;
-        private Data datos;
+        //private Data datos;
         public List<ItemSet> candidates { get; set; }
         public List<ItemSet> fItemSets { get; set; }
 
@@ -17,20 +17,20 @@ namespace Model
         public FIGeneration(double minSup, Boolean test)
         {
             minSupport = minSup/100;
-            datos = new Data();
-            if (test)
+            //datos = new Data();
+            /*if (test)
             {
                 datos.loadDataTest();
             }
             datos.LoadTransactions();
-            //datos.FiltrarPorSupport();
+            //datos.FiltrarPorSupport();*/
             candidates = new List<ItemSet>();
             fItemSets = new List<ItemSet>();
         }
 
         //Frequent Intemset Generation Apriori Algorithm 
 
-        public void FrequentItemGeneration(int j)
+        public void FrequentItemGeneration(int j, Data datos)
         {
             int k = 1; // size k of itemset (k-itemset)
             Dictionary<String, Item> Fk = datos.items;
@@ -46,13 +46,13 @@ namespace Model
                 Console.WriteLine("candidatos en interacion " + k + " son de tamaño: " + candidates.Count);
                 k++;
             }
-            SupportCounter(candidates);
+            SupportCounter(candidates, datos);
             Console.WriteLine("Numero total de candidatos: "+candidates.Count);
-            pruning(candidates);
+            pruning(candidates, datos);
             Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
         }
 
-        public void AprioriFrequentItemGeneration()
+        public void AprioriFrequentItemGeneration(Data datos)
         {
             int k = 1; // size k of itemset (k-itemset)
             Dictionary<String, Item> Fk = datos.PodarItemsPorSupport(minSupport);
@@ -62,10 +62,10 @@ namespace Model
             {
                 Console.WriteLine("Iteracion: " + k);
                 IEnumerable<ItemSet> Ck = loadItemSet(Fk, k);
-                SupportCounter(Ck.ToList());
+                SupportCounter(Ck.ToList(), datos);
                 candidates = candidates.Union(Ck.ToList(), new ItemSetComparator()).ToList();
                 Console.WriteLine("candidatos en interacion " + k + " son de tamaño: " + candidates.Count);
-                pruning(candidates);
+                pruning(candidates, datos);
                 Console.WriteLine("cand despues de Poda: "+candidates.Count);
                 Fk = ItemsToComb(candidates);
                 Console.WriteLine("# de items a combinar para k"+(k+1)+" "+Fk.Count);
@@ -110,7 +110,7 @@ namespace Model
         }
 
         //FuerzaBurta
-        public void SupportCounter(List<ItemSet> candidates)
+        public void SupportCounter(List<ItemSet> candidates, Data datos)
         {
             Dictionary<String, Transaction> transactions = datos.transactions;
             foreach (ItemSet itemset in candidates)
@@ -141,7 +141,7 @@ namespace Model
             }
         }
         
-        public void pruning(List<ItemSet> candidates)
+        public void pruning(List<ItemSet> candidates, Data datos)
         {
             List<ItemSet> toRemove= new List<ItemSet>();
             foreach(ItemSet itemset in candidates)

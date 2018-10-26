@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Rule
+    public class Rule
     {
         public double confidence { get; set; }
         public ItemSet antecedente { get; }

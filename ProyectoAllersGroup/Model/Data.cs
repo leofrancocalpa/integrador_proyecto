@@ -21,16 +21,22 @@ namespace Model
         public Dictionary<String, Transaction> transactions { get; set; }
        // public Dictionary<String, Cliente> clientes { get; set; }
         public Dictionary<int,Cliente> clientes { get; set; }
-        //public Dictionary<String, Item> frequentItems { get; set; }
+        public Dictionary<String, Item> frequentItems { get; set; }
 
-        public Data()
+        public Data(Boolean test)
         {
             //minSupport = minS;
             items = new Dictionary<String, Item>();
             transactions = new Dictionary<string, Transaction>();
             clientes = new Dictionary<int, Cliente>();
             route = routeVentas;
-            LoadClientes();
+            if (test)
+            {
+                loadDataTest();
+            }
+            LoadTransactions();
+            //datos.FiltrarPorSupport();
+            //LoadClientes();
         }
         public void LoadClientes()
         {
@@ -117,7 +123,7 @@ namespace Model
 
         public Dictionary<String, Item> PodarItemsPorSupport(double minSupport)
         {
-            Dictionary<String, Item> frequentItems = new Dictionary<string, Item>();
+            frequentItems = new Dictionary<string, Item>();
             foreach(KeyValuePair<String, Item> pairs in items)
             {
                 int c = pairs.Value.support;

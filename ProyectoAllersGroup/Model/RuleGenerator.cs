@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class RuleGenerator
+    public class RuleGenerator
     {
         public double minConfidence { get; set; }
         public List<Rule> associationRUles { get; } 

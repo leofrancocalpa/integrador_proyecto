@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class Cluster
+    public class Cluster
     {
         public List<Cliente> elementos { get; set; }
         public ItemSet agrupador;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    class ClustersGenerator
+    public class ClustersGenerator
     {
         public List<Cluster> clusters { get; set; }
 
