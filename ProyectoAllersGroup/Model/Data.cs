@@ -12,15 +12,12 @@ namespace Model
         private String routeArticulos = "..\\..\\..\\Data\\Articulos.csv";
         private String routeClientes = "..\\..\\..\\Data\\Clientes.csv";
         private String routeVentas = "..\\..\\..\\Data\\Ventas.csv";
-        //private String routeFI = "..\\..\\..\\Data\\FrequentItems.csv";
-
-        //private double minSupport;
+        
         private String route;
 
         public Dictionary<String, Item> items { get; set; }
         public Dictionary<String, Transaction> transactions { get; set; }
-       // public Dictionary<String, Cliente> clientes { get; set; }
-        public Dictionary<int,Cliente> clientes { get; set; }
+        public Dictionary<String, Cliente> clientes { get; set; }
         public Dictionary<String, Item> frequentItems { get; set; }
 
         public Data(Boolean test)
@@ -28,16 +25,21 @@ namespace Model
             //minSupport = minS;
             items = new Dictionary<String, Item>();
             transactions = new Dictionary<string, Transaction>();
-            clientes = new Dictionary<int, Cliente>();
+            clientes = new Dictionary<String, Cliente>();
+            frequentItems = new Dictionary<string, Item>();
             route = routeVentas;
             if (test)
             {
                 loadDataTest();
             }
-            LoadTransactions();
-            //datos.FiltrarPorSupport();
-            //LoadClientes();
+            
         }
+
+        public void loadDataTest()
+        {
+            route = "..\\..\\..\\Data\\datosTest.csv";
+        }
+
         public void LoadClientes()
         {
             try
@@ -45,28 +47,26 @@ namespace Model
                 StreamReader sr = new StreamReader(routeVentas);
                 String line = sr.ReadLine();
                 line = sr.ReadLine();
-                String cliente = "";
-                int c = 0;
+                line = sr.ReadLine();
                 while (line != null)
                 {
-                    String[] datos = line.Split(';');
-                    Cliente actual = new Cliente(datos[0]);
-                    if (!(actual.codigo.Equals(cliente)))
+                    String[] datosCliente = line.Split(';');
+                    if (!clientes.ContainsKey(datosCliente[0]))
                     {
-                        clientes.Add(c, actual);
-                        cliente = actual.codigo;
-                        c++;
+                        Cliente clienteNuevo = new Cliente(datosCliente[0]);
+                        clienteNuevo.groupName = datosCliente[1];
+                        clienteNuevo.ciudad = datosCliente[2];
+                        clienteNuevo.departamento = datosCliente[3];
+                        clienteNuevo.pago = datosCliente[4];
                     }
-                    else
-                    {
-                        line = sr.ReadLine();
-                    }
-                     }
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+                
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                Console.WriteLine("Error Cargar Clientes: " + e.Message +"\n" + e.StackTrace);
             }
         }
         public void LoadTransactions()
@@ -123,11 +123,9 @@ namespace Model
 
         public Dictionary<String, Item> PodarItemsPorSupport(double minSupport)
         {
-            frequentItems = new Dictionary<string, Item>();
             foreach(KeyValuePair<String, Item> pairs in items)
             {
                 int c = pairs.Value.support;
-                //Console.WriteLine(pairs.Key + " " + c);
                 if (c>=(minSupport*transactions.Count))
                 {
                     frequentItems.Add(pairs.Key, pairs.Value);
@@ -136,12 +134,6 @@ namespace Model
             items = frequentItems;
             Console.WriteLine("Items frecuentes: " + frequentItems.Count);
             return frequentItems;
-            
-            //frequentItems.ToList().ForEach(x => Console.WriteLine(x.Value.countSupport));
-        }
-        public void loadDataTest()
-        {
-            route = "..\\..\\..\\Data\\datosTest.csv";
         }
 
         public void PodarTransacciones()

@@ -13,19 +13,39 @@ namespace ConsoleAppTester
         {
             //Console.WriteLine();
             //Console.ReadLine();
+            try
+            {
+                Console.WriteLine("Ingrese minSupport :");
+                double minSupport = Convert.ToDouble(Console.ReadLine()) / 100;
+                Console.WriteLine("Ingrese minConfidence :");
+                double minConfidence = Convert.ToDouble(Console.ReadLine());
 
-            Console.WriteLine("Ingrese minSupport :");
-            double minSupport = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Ingrese minConfidence :");
-            double minConfidence = Convert.ToDouble(Console.ReadLine());
+                Data data = new Data(true);
+                FIGeneration fIGeneration = new FIGeneration(minSupport, true);
+                RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
+                ClustersGenerator clustersGenerator = new ClustersGenerator();
 
-            Data data = new Data(true);
-            FIGeneration fIGeneration = new FIGeneration(minSupport, true);
-            RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
-            ClustersGenerator clustersGenerator = new ClustersGenerator();
+                data.LoadTransactions();
+                data.PodarItemsPorSupport(minSupport);
+                fIGeneration.AprioriFrequentItemGeneration(data);
 
-            data.LoadTransactions();
-            data.PodarItemsPorSupport(minSupport);
+                foreach (ItemSet itemset in fIGeneration.candidates)
+                {
+                    String cods = "";
+                    itemset.items.ToList().ForEach(x => cods += x.Value.cod + " ");
+                    Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
+
+                }
+
+                Console.ReadLine();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error main: " + e.Message + "\n" + e.StackTrace);
+                Console.ReadLine();
+            }
+
+            
         }
     }
 }

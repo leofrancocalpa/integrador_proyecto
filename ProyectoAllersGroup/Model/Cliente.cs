@@ -9,16 +9,15 @@ namespace Model
     public class Cliente
     {
         public String codigo { get; }
-        public List<Item> items { get; }
+        public String groupName { get; set; }
+        public String ciudad { get; set; }
+        public String departamento { get; set; }
+        public String pago { get; set; }
 
         public Cliente(String cod)
         {
             codigo = cod;
-            items = new List<Item>();
         }
-        public void agregarItems(Item ti)
-        {
-            items.Add(ti);
-        }
+        
     }
 }

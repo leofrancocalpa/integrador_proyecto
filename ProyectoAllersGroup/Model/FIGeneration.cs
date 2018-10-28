@@ -16,7 +16,7 @@ namespace Model
         //Constructor
         public FIGeneration(double minSup, Boolean test)
         {
-            minSupport = minSup/100;
+            minSupport = minSup;
             //datos = new Data();
             /*if (test)
             {
@@ -55,7 +55,7 @@ namespace Model
         public void AprioriFrequentItemGeneration(Data datos)
         {
             int k = 1; // size k of itemset (k-itemset)
-            Dictionary<String, Item> Fk = datos.PodarItemsPorSupport(minSupport);
+            Dictionary<String, Item> Fk = datos.frequentItems;
 
             Console.WriteLine("Numero de candidatos T0: " + candidates.Count+" fk "+Fk.Count);
             while (k <= Fk.Count)
@@ -155,6 +155,7 @@ namespace Model
             }
             foreach(ItemSet IS in toRemove)
             {
+                Console.WriteLine("Removiendo :" + IS.support);
                 candidates.Remove(IS);
             }
             //Console.WriteLine("--+"+candidates.Count);
