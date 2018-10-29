@@ -45,6 +45,7 @@ namespace Model
                     }
                     if (valor == cluster.agrupador.items.Count)
                     {
+
                         cluster.elementos.Add(clientes[transaccion.Value.codCliente]);
                     }
                 }
