@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
+ 
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-=======
+
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.botIngresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
->>>>>>> code
+ 
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -69,15 +69,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
+ 
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-=======
+
             this.ClientSize = new System.Drawing.Size(642, 293);
             this.Controls.Add(this.botIngresar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
->>>>>>> code
+
             this.Name = "MainForm";
             this.Text = "Data Miner Allers";
             this.Load += new System.EventHandler(this.MainForm_Load);
