@@ -12,16 +12,23 @@ namespace GUI
 {
     public partial class MainForm : Form
     {
+        private VetanaPrincipal ventana;
         private Data inicial;
         public MainForm()
         {
             InitializeComponent();
-            inicial = new Data();
+           
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void botIngresar_Click(object sender, EventArgs e)
+        {
+             ventana = new VetanaPrincipal();
+             ventana.Show();
         }
     }
 }
