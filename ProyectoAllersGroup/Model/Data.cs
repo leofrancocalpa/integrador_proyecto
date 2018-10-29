@@ -30,7 +30,6 @@ namespace Model
             transactions = new Dictionary<string, Transaction>();
             clientes = new Dictionary<int, Cliente>();
             route = routeVentas;
-            LoadClientes();
         }
         public void LoadClientes()
         {

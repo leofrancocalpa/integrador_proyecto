@@ -20,7 +20,7 @@ namespace GUI
         public VetanaPrincipal()
         {
             InitializeComponent();
-            inicial = new Data();                     
+            inicial = new Data();
         }
 
         private void VetanaPrincipal_Load(object sender, EventArgs e)
@@ -28,16 +28,16 @@ namespace GUI
 
         }
 
-       // private void butProductos_Click(object sender, EventArgs e)
-      //  {
-      //
+        // private void butProductos_Click(object sender, EventArgs e)
+        //  {
+        //
         //}
 
         //private void butTransacciones_Click(object sender, EventArgs e)
         //{
         //
         //}
- 
+
         private void IngresarProductos_Click(object sender, EventArgs e)
         {
             produ = new PanelProductos(this);
@@ -55,10 +55,6 @@ namespace GUI
             cli = new PanelClientes();
             cli.Show();
         }
-        public void frequentItems()
-        {
-            inicial.LoadTransactions();
-        }
         
-    }
+}
 }

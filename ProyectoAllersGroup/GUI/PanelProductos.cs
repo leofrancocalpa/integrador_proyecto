@@ -24,7 +24,8 @@ namespace GUI
         private void Iniciar_Click(object sender, EventArgs e)
         {
 
-            int cantidad = 0;
+            int cantidad = Convert.ToInt32(numeroCombinaciones.Text);
+            double umbral = Convert.ToDouble(Umbral.Text);
 
 
             ListViewItem lista = new ListViewItem(c+"");
