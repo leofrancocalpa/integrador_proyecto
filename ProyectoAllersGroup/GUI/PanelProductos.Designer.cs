@@ -36,8 +36,7 @@
             this.Umbral = new System.Windows.Forms.TextBox();
             this.numeroCombinaciones = new System.Windows.Forms.TextBox();
             this.vistaProductos = new System.Windows.Forms.ListView();
-            this.CodigoProductos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Frecuencia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Productos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Soporte = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
@@ -102,25 +101,19 @@
             // vistaProductos
             // 
             this.vistaProductos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.CodigoProductos,
-            this.Frecuencia,
+            this.Productos,
             this.Soporte});
             this.vistaProductos.Location = new System.Drawing.Point(288, 30);
             this.vistaProductos.Name = "vistaProductos";
-            this.vistaProductos.Size = new System.Drawing.Size(239, 299);
+            this.vistaProductos.Size = new System.Drawing.Size(169, 299);
             this.vistaProductos.TabIndex = 7;
             this.vistaProductos.UseCompatibleStateImageBehavior = false;
             this.vistaProductos.View = System.Windows.Forms.View.Details;
             // 
-            // CodigoProductos
+            // Productos
             // 
-            this.CodigoProductos.Text = "CodigoProductos";
-            this.CodigoProductos.Width = 100;
-            // 
-            // Frecuencia
-            // 
-            this.Frecuencia.Text = "Frecuencia";
-            this.Frecuencia.Width = 69;
+            this.Productos.Text = "CodigoProductos";
+            this.Productos.Width = 100;
             // 
             // Soporte
             // 
@@ -130,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 341);
+            this.ClientSize = new System.Drawing.Size(464, 341);
             this.Controls.Add(this.vistaProductos);
             this.Controls.Add(this.numeroCombinaciones);
             this.Controls.Add(this.Umbral);
@@ -156,8 +149,7 @@
         private System.Windows.Forms.TextBox Umbral;
         private System.Windows.Forms.TextBox numeroCombinaciones;
         private System.Windows.Forms.ListView vistaProductos;
-        private System.Windows.Forms.ColumnHeader CodigoProductos;
-        private System.Windows.Forms.ColumnHeader Frecuencia;
+        private System.Windows.Forms.ColumnHeader Productos;
         private System.Windows.Forms.ColumnHeader Soporte;
     }
 }

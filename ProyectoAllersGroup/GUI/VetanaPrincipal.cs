@@ -14,13 +14,14 @@ namespace GUI
     public partial class VetanaPrincipal : Form
     {
         private Data inicial;
+        private FIGeneration frecuentes;
         private PanelTransacciones trans;
         private PanelClientes cli;
         private PanelProductos produ;
         public VetanaPrincipal()
         {
             InitializeComponent();
-            inicial = new Data();
+            inicial = new Data(false);
         }
 
         private void VetanaPrincipal_Load(object sender, EventArgs e)
@@ -54,6 +55,24 @@ namespace GUI
         {
             cli = new PanelClientes();
             cli.Show();
+        }
+        public List<String> generarItemsFrecuentes(double soporte, int numeroCombinaciones)
+        {
+            List<String> reporte = new List<String>();
+            inicial.LoadTransactions();
+            inicial.PodarItemsPorSupport(soporte);
+            frecuentes = new FIGeneration(soporte);
+            frecuentes.AprioriFrequentItemGeneration(numeroCombinaciones, inicial);
+            foreach (ItemSet itemset in frecuentes.candidates)
+            {
+                String cods = "";
+                itemset.items.ToList().ForEach(x => cods += x.Value.cod + " ");
+                String mensaje = cods + ";" + itemset.support;
+                Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
+                reporte.Add(mensaje);
+            }
+            return reporte;
+
         }
         
 }

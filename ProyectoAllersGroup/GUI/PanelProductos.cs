@@ -13,26 +13,26 @@ namespace GUI
     public partial class PanelProductos : Form
     {
         private VetanaPrincipal ventana;
-        private int c;
         public PanelProductos(VetanaPrincipal principal)
         {
             ventana = principal;
             InitializeComponent();
-            c = 0;
         }
 
         private void Iniciar_Click(object sender, EventArgs e)
         {
-
             int cantidad = Convert.ToInt32(numeroCombinaciones.Text);
             double umbral = Convert.ToDouble(Umbral.Text);
-
-
-            ListViewItem lista = new ListViewItem(c+"");
-            lista.SubItems.Add("HOLI");
-            lista.SubItems.Add("PERRA");
-            c++;
-            vistaProductos.Items.Add(lista);
+            umbral = umbral / 100;
+            List<String> mostrar = ventana.generarItemsFrecuentes(umbral, cantidad);
+            for (int i = 0; i < mostrar.Count; i++)
+            {
+                String[] datos = mostrar[i].Split(';');
+                ListViewItem nuevo = new ListViewItem(datos[0]);
+                nuevo.SubItems.Add(datos[1]);
+                vistaProductos.Items.Add(nuevo);
+            }
+            
         }
     }
 }
