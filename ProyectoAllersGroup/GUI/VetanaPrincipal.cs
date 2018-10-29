@@ -55,5 +55,10 @@ namespace GUI
             cli = new PanelClientes();
             cli.Show();
         }
+        public void frequentItems()
+        {
+            inicial.LoadTransactions();
+        }
+        
     }
 }

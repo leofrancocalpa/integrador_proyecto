@@ -24,6 +24,9 @@ namespace GUI
         private void Iniciar_Click(object sender, EventArgs e)
         {
 
+            int cantidad = 0;
+
+
             ListViewItem lista = new ListViewItem(c+"");
             lista.SubItems.Add("HOLI");
             lista.SubItems.Add("PERRA");
