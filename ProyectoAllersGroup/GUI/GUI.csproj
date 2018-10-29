@@ -80,6 +80,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PanelClientes.resx">
+      <DependentUpon>PanelClientes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PanelProductos.resx">
       <DependentUpon>PanelProductos.cs</DependentUpon>
     </EmbeddedResource>
