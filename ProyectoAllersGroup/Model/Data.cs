@@ -28,6 +28,7 @@ namespace Model
             clientes = new Dictionary<String, Cliente>();
             frequentItems = new Dictionary<string, Item>();
             route = routeVentas;
+<<<<<<< HEAD
             if (test)
             {
                 loadDataTest();
@@ -38,6 +39,8 @@ namespace Model
         public void loadDataTest()
         {
             route = "..\\..\\..\\Data\\datosTest.csv";
+=======
+>>>>>>> code
         }
 
         public void LoadClientes()

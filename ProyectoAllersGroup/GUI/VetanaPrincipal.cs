@@ -14,6 +14,9 @@ namespace GUI
     public partial class VetanaPrincipal : Form
     {
         private Data inicial;
+        private PanelTransacciones trans;
+        private PanelClientes cli;
+        private PanelProductos produ;
         public VetanaPrincipal()
         {
             InitializeComponent();
@@ -24,5 +27,34 @@ namespace GUI
         {
 
         }
-    }
+
+        // private void butProductos_Click(object sender, EventArgs e)
+        //  {
+        //
+        //}
+
+        //private void butTransacciones_Click(object sender, EventArgs e)
+        //{
+        //
+        //}
+
+        private void IngresarProductos_Click(object sender, EventArgs e)
+        {
+            produ = new PanelProductos(this);
+            produ.Show();
+        }
+
+        private void IngresarTransacciones_Click(object sender, EventArgs e)
+        {
+            trans = new PanelTransacciones();
+            trans.Show();
+        }
+
+        private void IngresarClientes_Click(object sender, EventArgs e)
+        {
+            cli = new PanelClientes();
+            cli.Show();
+        }
+        
+}
 }
