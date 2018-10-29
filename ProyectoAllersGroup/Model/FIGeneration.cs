@@ -14,7 +14,7 @@ namespace Model
         public List<ItemSet> fItemSets { get; set; }
 
         //Constructor
-        public FIGeneration(double minSup, Boolean test)
+        public FIGeneration(double minSup)
         {
             minSupport = minSup;
             //datos = new Data();
@@ -52,13 +52,13 @@ namespace Model
             Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
         }
 
-        public void AprioriFrequentItemGeneration(Data datos)
+        public void AprioriFrequentItemGeneration(int j, Data datos)
         {
             int k = 1; // size k of itemset (k-itemset)
             Dictionary<String, Item> Fk = datos.frequentItems;
 
             Console.WriteLine("Numero de candidatos T0: " + candidates.Count+" fk "+Fk.Count);
-            while (k <= Fk.Count)
+            while (k <= j)
             {
                 Console.WriteLine("Iteracion: " + k);
                 IEnumerable<ItemSet> Ck = loadItemSet(Fk, k);
@@ -155,7 +155,7 @@ namespace Model
             }
             foreach(ItemSet IS in toRemove)
             {
-                Console.WriteLine("Removiendo :" + IS.support);
+                //Console.WriteLine("Removiendo :" + IS.support);
                 candidates.Remove(IS);
             }
             //Console.WriteLine("--+"+candidates.Count);

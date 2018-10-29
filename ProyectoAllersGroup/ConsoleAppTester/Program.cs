@@ -20,14 +20,14 @@ namespace ConsoleAppTester
                 Console.WriteLine("Ingrese minConfidence :");
                 double minConfidence = Convert.ToDouble(Console.ReadLine());
 
-                Data data = new Data(true);
-                FIGeneration fIGeneration = new FIGeneration(minSupport, true);
+                Data data = new Data(false);
+                FIGeneration fIGeneration = new FIGeneration(minSupport);
                 RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
                 ClustersGenerator clustersGenerator = new ClustersGenerator();
 
                 data.LoadTransactions();
                 data.PodarItemsPorSupport(minSupport);
-                fIGeneration.AprioriFrequentItemGeneration(data);
+                fIGeneration.AprioriFrequentItemGeneration(4,data);
 
                 foreach (ItemSet itemset in fIGeneration.candidates)
                 {
