@@ -20,7 +20,7 @@ namespace ConsoleAppTester
                 Console.WriteLine("Ingrese minConfidence :");
                 double minConfidence = Convert.ToDouble(Console.ReadLine());
 
-                Data data = new Data(true);
+                Data data = new Data(false);
                 FIGeneration fIGeneration = new FIGeneration(minSupport);
                 RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
                 ClustersGenerator clustersGenerator = new ClustersGenerator(0.75);
@@ -36,7 +36,7 @@ namespace ConsoleAppTester
                     Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
 
                 }
-
+                Console.WriteLine("Terminó!");
                 Console.ReadLine();
             }
             catch(Exception e)

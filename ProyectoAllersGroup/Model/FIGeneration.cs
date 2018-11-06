@@ -56,7 +56,10 @@ namespace Model
         {
             int k = 1; // size k of itemset (k-itemset)
             Dictionary<String, Item> Fk = datos.frequentItems;
-
+            if (j > Fk.Count)
+            {
+                j = Fk.Count;
+            }
             Console.WriteLine("Numero de candidatos T0: " + candidates.Count+" fk "+Fk.Count);
             while (k <= j)
             {
