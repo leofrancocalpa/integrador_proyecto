@@ -24,8 +24,9 @@ namespace UnitTestProject
             esperados.Add("MILK DIAPERS ", 3);
             esperados.Add("DIAPERS BEER ", 3);
 
-            fIGeneration = new FIGeneration(60, true);//min support del 60%
-            fIGeneration.FrequentItemGeneration(3);
+            fIGeneration = new FIGeneration(0.6);//min support del 60%
+            Data data = new Data(true);
+            fIGeneration.FrequentItemGeneration(4, data);
             
         }
         [TestMethod]

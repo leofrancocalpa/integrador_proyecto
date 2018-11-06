@@ -40,5 +40,10 @@ namespace Model
             }
             return salida;
         }
+
+        public String ToString()
+        {
+            return "";
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace ConsoleAppTester
                 Data data = new Data(true);
                 FIGeneration fIGeneration = new FIGeneration(minSupport);
                 RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
-                ClustersGenerator clustersGenerator = new ClustersGenerator();
+                ClustersGenerator clustersGenerator = new ClustersGenerator(0.75);
 
                 data.LoadTransactions();
                 data.PodarItemsPorSupport(minSupport);

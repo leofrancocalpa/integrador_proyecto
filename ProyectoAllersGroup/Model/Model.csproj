@@ -45,6 +45,7 @@
     <Compile Include="ClustersGenerator.cs" />
     <Compile Include="Combinacion.cs" />
     <Compile Include="Data.cs" />
+    <Compile Include="Elemento.cs" />
     <Compile Include="FIGeneration.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemSet.cs" />
