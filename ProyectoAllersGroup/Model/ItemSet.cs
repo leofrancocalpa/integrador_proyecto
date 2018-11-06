@@ -43,6 +43,11 @@ namespace Model
 
         public String ToString()
         {
+            String salida = "";
+            foreach(KeyValuePair<String, Item> i in items)
+            {
+
+            }
             return "";
         }
     }

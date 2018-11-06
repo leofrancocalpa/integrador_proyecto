@@ -20,6 +20,8 @@ namespace Model
         public Dictionary<String, Cliente> clientes { get; set; }
         public Dictionary<String, Item> frequentItems { get; set; }
 
+        private Dictionary<String, String> trClientes { get; set; }
+
         public Data(Boolean test)
         {
             //minSupport = minS;
@@ -32,7 +34,7 @@ namespace Model
             {
                 loadDataTest();
             }
-            
+            trClientes = new Dictionary<string, string>();
         }
 
         public void loadDataTest()
@@ -45,7 +47,7 @@ namespace Model
         {
             try
             {
-                StreamReader sr = new StreamReader(routeVentas);
+                StreamReader sr = new StreamReader(routeClientes);
                 String line = sr.ReadLine();
                 line = sr.ReadLine();
                 line = sr.ReadLine();
@@ -59,9 +61,11 @@ namespace Model
                         clienteNuevo.ciudad = datosCliente[2];
                         clienteNuevo.departamento = datosCliente[3];
                         clienteNuevo.pago = datosCliente[4];
+                        clientes.Add(clienteNuevo.codigo, clienteNuevo);
                     }
                     line = sr.ReadLine();
                 }
+                Console.WriteLine("clientes "+clientes.Count);
                 sr.Close();
                 
             }
@@ -84,6 +88,7 @@ namespace Model
                     if (transactions.ContainsKey(datos[1]))
                     {
                         Item actualItem = new Item(datos[4]);
+                        actualItem.price = Convert.ToDouble(datos[6]);
                         KeyValuePair<String, Item> itemtoIn = new KeyValuePair<string, Item>(actualItem.cod, actualItem);
                         if (!transactions[datos[1]].itemsInTransaction.items.ContainsKey(actualItem.cod))
                         {
@@ -100,6 +105,7 @@ namespace Model
                         Transaction actualTransaction = new Transaction(datos[0], datos[1], datos[2]);
                         transactions.Add(datos[1], actualTransaction);
                         Item actualItem = new Item(datos[4]);
+                        actualItem.price = Convert.ToDouble(datos[6]);
                         KeyValuePair<String, Item> itemtoIn = new KeyValuePair<string, Item>(actualItem.cod, actualItem);
                         actualTransaction.itemsInTransaction.items.Add(actualItem.cod, actualItem);
                         if (!items.ContainsKey(datos[4]))
@@ -107,6 +113,10 @@ namespace Model
                             items.Add(actualItem.cod, actualItem);
                         }
                         items[datos[4]].IncreaserCount();
+                        if (!trClientes.ContainsKey(datos[0]))
+                        {
+                            trClientes.Add(datos[0], datos[0]);
+                        }
                         //Console.WriteLine(datos[1]);
                     }
 
@@ -139,12 +149,65 @@ namespace Model
 
         public void PodarTransacciones()
         {
+            int numTransactions = transactions.Count;
+            Console.WriteLine(trClientes.Count);
+            foreach(KeyValuePair<String, String> cli in trClientes)
+            {
 
+                List<KeyValuePair<String, Transaction>> tran = transactions.Where(x => x.Value.codCliente.Equals(cli.Value)).ToList();
+                if(tran.Count < numTransactions * 0.005)
+                {
+                    foreach(KeyValuePair<String, Transaction> t in tran)
+                    {
+                        transactions.Remove(t.Key);
+                    }
+                }
+            }
         }
 
         public void PodarClientes()
         {
+            Dictionary<String, String> cli = new Dictionary<string, string>();
+            foreach(KeyValuePair<String, Transaction> t in transactions)
+            {
+                String cc = t.Value.codCliente;
+                
+                if (!cli.ContainsKey(cc))
+                {
+                    cli.Add(cc,cc);
+                }
+            }
+            List<KeyValuePair<String, Cliente>> cli1 = clientes.Where(x => !cli.ContainsKey(x.Key)).ToList();
+            foreach (KeyValuePair<string, Cliente> cliente in cli1)
+            {
+                if (clientes.ContainsKey(cliente.Key))
+                {
+                    clientes.Remove(cliente.Key);
+                }
+            }
+        }
 
+        public void PodarArticulos()
+        {
+            Dictionary<String, Item> itemsIntransaction = new Dictionary<string, Item>();
+            foreach(KeyValuePair<String, Transaction> t in transactions)
+            {
+                foreach(KeyValuePair<String, Item> item in t.Value.itemsInTransaction.items)
+                {
+                    if (!itemsIntransaction.ContainsKey(item.Key))
+                    {
+                        itemsIntransaction.Add(item.Key, item.Value);
+                    }
+                }
+            }
+            List<KeyValuePair<String, Item>> itemsARemover = items.Where(x => !itemsIntransaction.ContainsKey(x.Key)).ToList();
+            foreach(KeyValuePair<String, Item> item in itemsARemover)
+            {
+                if (items.ContainsKey(item.Key))
+                {
+                    items.Remove(item.Key);
+                }
+            }
         }
     }
 }

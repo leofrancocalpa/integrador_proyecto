@@ -26,6 +26,15 @@ namespace ConsoleAppTester
                 ClustersGenerator clustersGenerator = new ClustersGenerator(0.75);
 
                 data.LoadTransactions();
+                data.LoadClientes();
+                Console.WriteLine("--> "+data.transactions.Count);
+                data.PodarTransacciones();
+                Console.WriteLine("--> "+data.transactions.Count);
+                data.PodarClientes();
+                Console.WriteLine("-> "+data.clientes.Count);
+                data.PodarArticulos();
+                Console.WriteLine(".- "+data.items.Count);
+
                 data.PodarItemsPorSupport(minSupport);
                 fIGeneration.AprioriFrequentItemGeneration(4,data);
 
