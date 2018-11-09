@@ -25,7 +25,8 @@ namespace Model
         {
             CrearKCentroides(fItemSets);
             Particionar(transactions, clientes);
-            ajustarPertenencias();
+            //ajustarPertenencias();
+            Console.WriteLine("Cluster generados");
         }
 
         public void CrearKCentroides(List<ItemSet> fis)
@@ -35,6 +36,7 @@ namespace Model
                 Cluster cl = new Cluster(itemSet);
                 clusters.Add(cl);
             }
+            Console.WriteLine("Centroides creados: "+clusters.Count);
         }
 
         public void Particionar(Dictionary<String, Transaction> transactions, Dictionary<String, Cliente> clientes)
@@ -51,7 +53,7 @@ namespace Model
                             valor++;
                         }
                     }
-                    if ((valor/100) >= minPertencia)
+                    if ((valor/cluster.agrupador.items.Count) >= minPertencia)
                     {
                         if (elementos.ContainsKey(transaccion.Value.codCliente))
                         {
@@ -59,12 +61,12 @@ namespace Model
                             {
                                 if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / 100);
+                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
                                 }
                                 else
                                 {
                                     List<double> list = new List<double>();
-                                    list.Add(valor / 100);
+                                    list.Add(valor / cluster.agrupador.items.Count);
                                     pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
                                 }
                             }
@@ -73,25 +75,26 @@ namespace Model
                                 cluster.elementos.Add(elementos[transaccion.Value.codCliente]);
                                 if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / 100);
+                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
                                 }
                                 else
                                 {
                                     List<double> list = new List<double>();
-                                    list.Add(valor / 100);
+                                    list.Add(valor / cluster.agrupador.items.Count);
                                     pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
                                 }
                             }
                         }
                         else
                         {
-                            Elemento elemento = new Elemento(clientes[transaccion.Value.codCliente], (valor/100));
+                            Elemento elemento = new Elemento(clientes[transaccion.Value.codCliente], (valor/ cluster.agrupador.items.Count));
                             elementos.Add(transaccion.Value.codCliente, elemento);
                             cluster.elementos.Add(elemento);
                         }
                     }   
                 }
             }
+            Console.WriteLine("Particionado de datos");
         }
 
         public void ajustarPertenencias()
@@ -103,6 +106,7 @@ namespace Model
                     e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.id].Average();
                 }
             }
+            Console.WriteLine("Ajuste de pertenecias");
         }
 
     }

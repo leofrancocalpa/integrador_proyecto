@@ -98,7 +98,7 @@ namespace Model
                         {
                             items.Add(actualItem.cod, actualItem);
                         }
-                        items[datos[4]].IncreaserCount();
+                        //items[datos[4]].IncreaserCount();
                     }
                     else
                     {
@@ -112,7 +112,7 @@ namespace Model
                         {
                             items.Add(actualItem.cod, actualItem);
                         }
-                        items[datos[4]].IncreaserCount();
+                        //items[datos[4]].IncreaserCount();
                         if (!trClientes.ContainsKey(datos[0]))
                         {
                             trClientes.Add(datos[0], datos[0]);
@@ -155,7 +155,7 @@ namespace Model
             {
 
                 List<KeyValuePair<String, Transaction>> tran = transactions.Where(x => x.Value.codCliente.Equals(cli.Value)).ToList();
-                if(tran.Count < numTransactions * 0.005)
+                if(tran.Count < numTransactions * 0.01)
                 {
                     foreach(KeyValuePair<String, Transaction> t in tran)
                     {
@@ -194,6 +194,7 @@ namespace Model
             {
                 foreach(KeyValuePair<String, Item> item in t.Value.itemsInTransaction.items)
                 {
+                    items[item.Key].IncreaserCount();
                     if (!itemsIntransaction.ContainsKey(item.Key))
                     {
                         itemsIntransaction.Add(item.Key, item.Value);

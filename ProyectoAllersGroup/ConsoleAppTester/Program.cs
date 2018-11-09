@@ -31,12 +31,12 @@ namespace ConsoleAppTester
                 data.PodarTransacciones();
                 Console.WriteLine("--> "+data.transactions.Count);
                 data.PodarClientes();
-                Console.WriteLine("-> "+data.clientes.Count);
+                Console.WriteLine("Clientes -> "+data.clientes.Count);
                 data.PodarArticulos();
-                Console.WriteLine(".- "+data.items.Count);
+                Console.WriteLine("Items Podados.- "+data.items.Count);
 
                 data.PodarItemsPorSupport(minSupport);
-                fIGeneration.AprioriFrequentItemGeneration(4,data);
+                fIGeneration.AprioriFrequentItemGeneration(3,data);
 
                 foreach (ItemSet itemset in fIGeneration.candidates)
                 {
@@ -45,6 +45,17 @@ namespace ConsoleAppTester
                     Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
 
                 }
+                clustersGenerator.GenerarClusters(data.transactions, data.clientes, fIGeneration.candidates);
+
+                foreach(Cluster c in clustersGenerator.clusters)
+                {
+                    Console.WriteLine("Cluster: "+c.agrupador.ToString());
+                    foreach(Elemento e in c.elementos)
+                    {
+                        Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.pertenencia+" al cluster");
+                    }
+                }
+
                 Console.WriteLine("Terminó!");
                 Console.ReadLine();
             }

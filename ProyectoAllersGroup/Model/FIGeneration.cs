@@ -49,7 +49,7 @@ namespace Model
             SupportCounter(candidates, datos);
             Console.WriteLine("Numero total de candidatos: "+candidates.Count);
             pruning(candidates, datos);
-            Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
+            //Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
         }
 
         public void AprioriFrequentItemGeneration(int j, Data datos)
@@ -76,7 +76,7 @@ namespace Model
             }
             Console.WriteLine("Numero total de candidatos: " + candidates.Count);
             
-            Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
+            //Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
         }
 
         public IEnumerable<ItemSet> loadItemSet(Dictionary<String, Item> fk, int setLenght)
@@ -149,7 +149,7 @@ namespace Model
             List<ItemSet> toRemove= new List<ItemSet>();
             foreach(ItemSet itemset in candidates)
             {
-                if ((itemset.support < minSupport * datos.transactions.Count))
+                if ((itemset.support < minSupport * datos.transactions.Count))//Modificacion
                 {
                     Console.WriteLine("Pruning -"+itemset+ "- soporte del candidato: "+itemset.support + " Soporte minimo: " + minSupport*datos.transactions.Count);
                     //fItemSets.Add(itemset);

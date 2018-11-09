@@ -46,9 +46,9 @@ namespace Model
             String salida = "";
             foreach(KeyValuePair<String, Item> i in items)
             {
-
+                salida += i.Key+" ";
             }
-            return "";
+            return salida;
         }
     }
 }
