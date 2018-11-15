@@ -9,27 +9,28 @@ namespace Model
     public class ClustersGenerator
     {
         public List<Cluster> clusters { get; set; }
-        public double minPertencia { get; }
+        public double minPertencia { get; set; }
         private Dictionary<String, Elemento> elementos;
         private Dictionary<String, List<double>> pertenencias;
 
-        public ClustersGenerator(double pert)
+        public ClustersGenerator()
         {
             clusters = new List<Cluster>();
             elementos = new Dictionary<string, Elemento>();
             pertenencias = new Dictionary<string, List<double>>();
-            minPertencia = pert;
         }
+
+        
 
         public void GenerarClusters(Dictionary<String, Transaction> transactions, Dictionary<String, Cliente> clientes, List<ItemSet> fItemSets)
         {
             CrearKCentroides(fItemSets);
             Particionar(transactions, clientes);
-            //ajustarPertenencias();
+            ajustarPertenencias();
             Console.WriteLine("Cluster generados");
         }
 
-        public void CrearKCentroides(List<ItemSet> fis)
+        private void CrearKCentroides(List<ItemSet> fis)
         {
             foreach(ItemSet itemSet in fis)
             {
@@ -39,7 +40,7 @@ namespace Model
             Console.WriteLine("Centroides creados: "+clusters.Count);
         }
 
-        public void Particionar(Dictionary<String, Transaction> transactions, Dictionary<String, Cliente> clientes)
+        private void Particionar(Dictionary<String, Transaction> transactions, Dictionary<String, Cliente> clientes)
         {
             foreach(Cluster cluster in clusters)
             {
@@ -97,7 +98,7 @@ namespace Model
             Console.WriteLine("Particionado de datos");
         }
 
-        public void ajustarPertenencias()
+        private void ajustarPertenencias()
         {
             foreach (Cluster Ci in clusters)
             {

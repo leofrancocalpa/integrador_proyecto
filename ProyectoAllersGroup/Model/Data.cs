@@ -128,6 +128,7 @@ namespace Model
             }
             catch(Exception e)
             {
+                
                 Console.WriteLine("Error LoadTransaction: \n" + e.StackTrace+"\n error: \n" + e.Message);
             }
         }
@@ -147,7 +148,7 @@ namespace Model
             return frequentItems;
         }
 
-        public void PodarTransacciones()
+        public void PodarTransacciones(double minTransactions)
         {
             int numTransactions = transactions.Count;
             Console.WriteLine(trClientes.Count);
@@ -155,7 +156,7 @@ namespace Model
             {
 
                 List<KeyValuePair<String, Transaction>> tran = transactions.Where(x => x.Value.codCliente.Equals(cli.Value)).ToList();
-                if(tran.Count < numTransactions * 0.01)
+                if(tran.Count < numTransactions * minTransactions)
                 {
                     foreach(KeyValuePair<String, Transaction> t in tran)
                     {

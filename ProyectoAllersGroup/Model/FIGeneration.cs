@@ -8,15 +8,15 @@ namespace Model
 {
     public class FIGeneration
     {
-        private double minSupport;
+        public double minSupport { get; set; }
         //private Data datos;
         public List<ItemSet> candidates { get; set; }
         public List<ItemSet> fItemSets { get; set; }
 
         //Constructor
-        public FIGeneration(double minSup)
+        public FIGeneration()
         {
-            minSupport = minSup;
+         
             //datos = new Data();
             /*if (test)
             {
@@ -27,6 +27,7 @@ namespace Model
             candidates = new List<ItemSet>();
             fItemSets = new List<ItemSet>();
         }
+        
 
         //Frequent Intemset Generation Apriori Algorithm 
 
