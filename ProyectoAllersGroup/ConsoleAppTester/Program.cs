@@ -21,14 +21,16 @@ namespace ConsoleAppTester
                 double minConfidence = Convert.ToDouble(Console.ReadLine());
 
                 Data data = new Data(false);
-                FIGeneration fIGeneration = new FIGeneration(minSupport);
+                FIGeneration fIGeneration = new FIGeneration();
+                fIGeneration.minSupport = minSupport;
                 RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
-                ClustersGenerator clustersGenerator = new ClustersGenerator(0.75);
+                ClustersGenerator clustersGenerator = new ClustersGenerator();
+                clustersGenerator.minPertencia = 0.75;
 
                 data.LoadTransactions();
                 data.LoadClientes();
                 Console.WriteLine("--> "+data.transactions.Count);
-                data.PodarTransacciones();
+                data.PodarTransacciones(0.01);
                 Console.WriteLine("--> "+data.transactions.Count);
                 data.PodarClientes();
                 Console.WriteLine("Clientes -> "+data.clientes.Count);
@@ -45,7 +47,8 @@ namespace ConsoleAppTester
                     Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
 
                 }
-                clustersGenerator.GenerarClusters(data.transactions, data.clientes, fIGeneration.candidates);
+                List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
+                clustersGenerator.GenerarClusters(data.transactions, data.clientes, fi);
 
                 foreach(Cluster c in clustersGenerator.clusters)
                 {
