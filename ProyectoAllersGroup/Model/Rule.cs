@@ -9,8 +9,8 @@ namespace Model
     public class Rule
     {
         public double confidence { get; set; }
-        public ItemSet antecedente { get; }
-        public ItemSet consecuente { get; }
+        public ItemSet antecedente { get; set; }
+        public ItemSet consecuente { get; set; }
 
         public Rule()
         {

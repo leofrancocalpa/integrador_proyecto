@@ -11,12 +11,13 @@ namespace Model
     {
         public Dictionary<String, Item> items { get; set; }
         public int support { get; set; }
-
+        public String id { get; set; }
         public ItemSet()
         {
             items = new Dictionary<string, Item>();
             support = 0;
         }
+       
 
         public void IncreaseSupport()
         {
@@ -49,6 +50,11 @@ namespace Model
                 salida += i.Key+" ";
             }
             return salida;
+        }
+
+        public void generarId()
+        {
+            id = ToString();
         }
     }
 }
