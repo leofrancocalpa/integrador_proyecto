@@ -1,6 +1,6 @@
 ﻿namespace GUI
 {
-    partial class ucPodarDatoscs
+    partial class ucPodarDatos
     {
         /// <summary> 
         /// Required designer variable.

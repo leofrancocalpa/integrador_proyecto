@@ -26,10 +26,12 @@ namespace GUI
             {
                 int j = Convert.ToInt32(tbNumMaxConjunos.Text);
                 double minSupport = Convert.ToDouble(tbMinSupport.Text)/100;
-                principal.GenerarFrequentItemSets(3, minSupport);
+                btnGenerarFIS.Enabled = false;
+                principal.GenerarFrequentItemSets(j, minSupport);
             }
             catch(Exception ex)
             {
+                principal.Dispose();
             }
         }
 

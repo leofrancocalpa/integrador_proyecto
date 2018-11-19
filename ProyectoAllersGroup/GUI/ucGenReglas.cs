@@ -11,11 +11,17 @@ using DevExpress.XtraEditors;
 
 namespace GUI
 {
-    public partial class ucProgressPanel : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucGenReglas : DevExpress.XtraEditors.XtraUserControl
     {
-        public ucProgressPanel()
+        public VentanaPrincipal principal { get; set; }
+        public ucGenReglas()
         {
             InitializeComponent();
+        }
+
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

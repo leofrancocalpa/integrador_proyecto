@@ -11,11 +11,11 @@ using DevExpress.XtraEditors;
 
 namespace GUI
 {
-    public partial class ucPodarDatoscs : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucPodarDatos : DevExpress.XtraEditors.XtraUserControl
     {
         public VentanaPrincipal principal { get; set; }
 
-        public ucPodarDatoscs()
+        public ucPodarDatos()
         {
             InitializeComponent();
         }
@@ -25,6 +25,7 @@ namespace GUI
             try
             {
                 double minOcurrencia = Convert.ToDouble(tbPorcentajeFrecuenciaClientes.Text)/100;
+                btnPodarDatos.Enabled = false;
                 principal.PodarDatos(minOcurrencia);
             }
             catch (Exception ex)
@@ -41,6 +42,11 @@ namespace GUI
             tbPorcentajeFrecuenciaClientes.ReadOnly=true;
         }
             
-        
+        public void LimpiarTextBox()
+        {
+            tbNumTransacciones.AppendText("");
+            tbNumCLientes.AppendText("");
+            tbNumArticulos.AppendText("");
+        }
     }
 }

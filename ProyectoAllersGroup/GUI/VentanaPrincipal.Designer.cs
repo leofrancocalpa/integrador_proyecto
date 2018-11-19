@@ -47,9 +47,9 @@
             // container
             // 
             this.container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.container.Location = new System.Drawing.Point(202, 30);
+            this.container.Location = new System.Drawing.Point(247, 30);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(562, 448);
+            this.container.Size = new System.Drawing.Size(647, 448);
             this.container.TabIndex = 0;
             // 
             // accordionControl1
@@ -63,7 +63,7 @@
             this.accordionControl1.Location = new System.Drawing.Point(0, 30);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(202, 448);
+            this.accordionControl1.Size = new System.Drawing.Size(247, 448);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -96,12 +96,14 @@
             this.aceGAR.Name = "aceGAR";
             this.aceGAR.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceGAR.Text = "Generar Reglas de Asociacion";
+            this.aceGAR.Click += new System.EventHandler(this.aceGAR_Click);
             // 
             // aceGC
             // 
             this.aceGC.Name = "aceGC";
             this.aceGC.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceGC.Text = "Generar Clusters";
+            this.aceGC.Click += new System.EventHandler(this.aceGC_Click);
             // 
             // acegConsultas
             // 
@@ -117,6 +119,7 @@
             this.aceArtFrecuentes.Name = "aceArtFrecuentes";
             this.aceArtFrecuentes.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceArtFrecuentes.Text = "Articulos Frecuentes";
+            this.aceArtFrecuentes.Click += new System.EventHandler(this.aceArtFrecuentes_Click);
             // 
             // aceClusters
             // 
@@ -131,7 +134,7 @@
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
             this.fluentDesignFormControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(764, 30);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(894, 30);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             // 
@@ -139,7 +142,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 478);
+            this.ClientSize = new System.Drawing.Size(894, 478);
             this.ControlContainer = this.container;
             this.Controls.Add(this.container);
             this.Controls.Add(this.accordionControl1);
@@ -148,7 +151,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VentanaPrincipal";
             this.NavigationControl = this.accordionControl1;
-            this.Text = "VentanaPrincipal";
+            this.Text = "AllersGroup";
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();
             this.ResumeLayout(false);

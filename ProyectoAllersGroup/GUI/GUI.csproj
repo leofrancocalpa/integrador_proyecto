@@ -34,14 +34,35 @@
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataAccess.v18.2.UI, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Images.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v18.2.UI, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Core, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Presets, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v18.2.Win, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPivotGrid.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraRichEdit.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v18.2, Version=18.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,23 +76,47 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowRulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRulesForm.Designer.cs">
+      <DependentUpon>ShowRulesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucConsultaItemSets.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucConsultaItemSets.Designer.cs">
+      <DependentUpon>ucConsultaItemSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucGenClusters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucGenClusters.Designer.cs">
+      <DependentUpon>ucGenClusters.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucGenItemsetF.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucGenItemsetF.Designer.cs">
       <DependentUpon>ucGenItemsetF.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucPodarDatoscs.cs">
+    <Compile Include="ucGenReglas.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucPodarDatoscs.Designer.cs">
-      <DependentUpon>ucPodarDatoscs.cs</DependentUpon>
+    <Compile Include="ucGenReglas.Designer.cs">
+      <DependentUpon>ucGenReglas.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucProgressPanel.cs">
+    <Compile Include="ucGridItemSets.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucProgressPanel.Designer.cs">
-      <DependentUpon>ucProgressPanel.cs</DependentUpon>
+    <Compile Include="ucGridItemSets.Designer.cs">
+      <DependentUpon>ucGridItemSets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucPodarDatos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucPodarDatos.Designer.cs">
+      <DependentUpon>ucPodarDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
@@ -90,14 +135,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ucConsultaItemSets.resx">
+      <DependentUpon>ucConsultaItemSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucGenClusters.resx">
+      <DependentUpon>ucGenClusters.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucGenItemsetF.resx">
       <DependentUpon>ucGenItemsetF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucPodarDatoscs.resx">
-      <DependentUpon>ucPodarDatoscs.cs</DependentUpon>
+    <EmbeddedResource Include="ucGenReglas.resx">
+      <DependentUpon>ucGenReglas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucProgressPanel.resx">
-      <DependentUpon>ucProgressPanel.cs</DependentUpon>
+    <EmbeddedResource Include="ucPodarDatos.resx">
+      <DependentUpon>ucPodarDatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>
