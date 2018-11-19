@@ -75,6 +75,7 @@ namespace Model
                 Console.WriteLine("# de items a combinar para k"+(k+1)+" "+Fk.Count);
                 k++;
             }
+            fItemSets= candidates.Where(x => (x.items.Count > 1)).ToList();
             Console.WriteLine("Numero total de candidatos: " + candidates.Count);
             
             //Console.WriteLine("Numero de conjuntos frcuentes: " + fItemSets.Count);
@@ -91,6 +92,7 @@ namespace Model
                 ItemSet newItemSet = new ItemSet();
                 List<KeyValuePair<String, Item>> evaluado = conjunto.ToList();
                 evaluado.ForEach(x => newItemSet.items.Add(x.Key, x.Value));
+                newItemSet.generarId();
                 candidates.Add(newItemSet);
             }
             return candidates;

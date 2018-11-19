@@ -210,6 +210,7 @@ namespace Model
                     items.Remove(item.Key);
                 }
             }
+            Console.WriteLine("mmmmm " + items.Count);
         }
     }
 }

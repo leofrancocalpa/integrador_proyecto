@@ -8,9 +8,10 @@ namespace Model
 {
     public class Analyzer
     {
-        public Data data { get; }
-        public FIGeneration fIGeneration { get; }
-        public ClustersGenerator clustersGenerator { get; }
+        public Data data { get; set; }
+        public FIGeneration fIGeneration { get; set; }
+        public RuleGenerator ruleGenerator { get; set; }
+        public ClustersGenerator clustersGenerator { get; set; }
         public double minSupport { get; set; }
         public double minConfidence { get; set; }
         public double minPertenencia { get; set; }
@@ -41,11 +42,13 @@ namespace Model
             data.PodarTransacciones(minTransactions);
             data.PodarClientes();
             data.PodarArticulos();
-            data.PodarItemsPorSupport(minSupport);
+            
         }
 
         public void GenerarFrequentItemSets(int maxItemSetsLength)
         {
+            data.PodarItemsPorSupport(minSupport);
+            fIGeneration.minSupport = minSupport;
             fIGeneration.AprioriFrequentItemGeneration(maxItemSetsLength, data);
         }
 
@@ -61,13 +64,10 @@ namespace Model
 
         public void GenerarClusters()
         {
-            clustersGenerator.GenerarClusters(data.transactions, data.clientes, fIGeneration.candidates);
+            List<ItemSet> fIS = fIGeneration.candidates.Where(x => (x.items.Count > 1)).ToList();
+            clustersGenerator.GenerarClusters(data.transactions, data.clientes, fIS);
         }
 
-        public List<Cluster> GetClusters()
-        {
-            return clustersGenerator.clusters;
-        }
 
     }
 }

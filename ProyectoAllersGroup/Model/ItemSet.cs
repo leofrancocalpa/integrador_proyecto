@@ -9,9 +9,10 @@ namespace Model
 {
     public class ItemSet 
     {
-        public Dictionary<String, Item> items { get; set; }
-        public int support { get; set; }
         public String id { get; set; }
+        public int support { get; set; }
+        public Dictionary<String, Item> items { get; set; }
+
         public ItemSet()
         {
             items = new Dictionary<string, Item>();

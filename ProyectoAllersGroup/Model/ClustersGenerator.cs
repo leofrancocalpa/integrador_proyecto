@@ -89,8 +89,18 @@ namespace Model
                         else
                         {
                             Elemento elemento = new Elemento(clientes[transaccion.Value.codCliente], (valor/ cluster.agrupador.items.Count));
-                            elementos.Add(transaccion.Value.codCliente, elemento);
+                            elementos.Add(elemento.id, elemento);
                             cluster.elementos.Add(elemento);
+                            if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
+                            {
+                                pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
+                            }
+                            else
+                            {
+                                List<double> list = new List<double>();
+                                list.Add(valor / cluster.agrupador.items.Count);
+                                pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
+                            }
                         }
                     }   
                 }
@@ -100,11 +110,15 @@ namespace Model
 
         private void ajustarPertenencias()
         {
+            //Console.WriteLine("clusters ajuste "+clusters.Count);
             foreach (Cluster Ci in clusters)
             {
                 foreach(Elemento e in Ci.elementos)
                 {
-                    e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.id].Average();
+                    //Console.WriteLine("Average ANtes");
+                    //Console.WriteLine(Ci.agrupador.ToString() + e.cliente.codigo + "");
+                    e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.cliente.codigo].Average();
+                    //Console.WriteLine("Average despues");
                 }
             }
             Console.WriteLine("Ajuste de pertenecias");

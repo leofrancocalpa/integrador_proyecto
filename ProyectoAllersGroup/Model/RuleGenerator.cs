@@ -9,11 +9,11 @@ namespace Model
     public class RuleGenerator
     {
         public double minConfidence { get; set; }
-        public List<Rule> associationRUles { get; } 
+        public List<Rule> associationRules { get; } 
 
         public RuleGenerator(double minConf)
         {
-            associationRUles = new List<Rule>();
+            associationRules = new List<Rule>();
             minConfidence = minConf;
         }
 
