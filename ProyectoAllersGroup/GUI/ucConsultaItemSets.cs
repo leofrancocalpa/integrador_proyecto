@@ -44,8 +44,8 @@ namespace GUI
                    //     +"\n con un soporte de: "+itemSet.support+"\n tienen las siguientes reglas de asociación: \n";
                     foreach(KeyValuePair<String, Item> item in itemSet.items)
                     {
-                        textBox1.AppendText("Cod Item: " + item.Key);
-                        textBox1.AppendText("Descripcion: "+item.Value.name);
+                        textBox1.AppendText("Cod Item: " + item.Key + " - Descripcion: " + item.Value.name);
+
                         textBox1.AppendText("\n");
                     }
                 }
@@ -67,7 +67,7 @@ namespace GUI
                       //  + "\n con un soporte de: " + itemSet.support + "\n tienen las siguientes reglas de asociación: \n";
                     foreach (KeyValuePair<String, Item> item in itemSet.items)
                     {
-                        textBox1.AppendText("Cod Item: " + item.Key+ " Descripcion: " + item.Value.name);
+                        textBox1.AppendText("Cod Item: " + item.Key+ " - Descripcion: " + item.Value.name);
                        
                         textBox1.AppendText("\n");
                     }

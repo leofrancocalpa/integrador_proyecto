@@ -51,7 +51,7 @@
             this.gridFrequentItemSets.BackgroundColor = System.Drawing.Color.White;
             this.gridFrequentItemSets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridFrequentItemSets.GridColor = System.Drawing.Color.White;
-            this.gridFrequentItemSets.Location = new System.Drawing.Point(36, 32);
+            this.gridFrequentItemSets.Location = new System.Drawing.Point(42, 87);
             this.gridFrequentItemSets.Name = "gridFrequentItemSets";
             this.gridFrequentItemSets.ReadOnly = true;
             this.gridFrequentItemSets.Size = new System.Drawing.Size(298, 263);
@@ -62,7 +62,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(363, 32);
+            this.textBox1.Location = new System.Drawing.Point(363, 87);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -75,7 +75,7 @@
             this.gridAsociationRules.AllowUserToDeleteRows = false;
             this.gridAsociationRules.BackgroundColor = System.Drawing.Color.White;
             this.gridAsociationRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridAsociationRules.Location = new System.Drawing.Point(363, 155);
+            this.gridAsociationRules.Location = new System.Drawing.Point(363, 221);
             this.gridAsociationRules.Name = "gridAsociationRules";
             this.gridAsociationRules.ReadOnly = true;
             this.gridAsociationRules.Size = new System.Drawing.Size(279, 140);

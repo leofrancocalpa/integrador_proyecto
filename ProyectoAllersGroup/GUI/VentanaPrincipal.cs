@@ -66,7 +66,6 @@ namespace GUI
             ucGenIF.LlenarInfo("", "");
             ucGenIF.LlenarInfo(nT, nA);
             analyzer.minSupport = minSupport;
-            //analyzer.data.PodarItemsPorSupport(minSupport);
             analyzer.GenerarFrequentItemSets(j);
             String numFIS = analyzer.fIGeneration.candidates.Count+"";
             String numMinAparicion = (analyzer.data.transactions.Count * minSupport)+"";
@@ -86,11 +85,8 @@ namespace GUI
             String nC = analyzer.clustersGenerator.clusters.Count+"";
             ucGenC.LlenarDatos(nC);
         }
-        /*private void accordionControlElement1_Click(object sender, EventArgs e)
-        {
-
-        }*/
-
+        
+        //Events Acordion ScrollBar
         private void acePodarDatos_Click(object sender, EventArgs e)
         {
             if (!container.Controls.Contains(ucPodarD))
