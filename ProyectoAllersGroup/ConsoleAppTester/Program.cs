@@ -9,6 +9,13 @@ namespace ConsoleAppTester
 {
     class Program
     {
+        public Data data { get; set; }
+        FIGeneration fIGeneration { get; set; }
+        RuleGenerator ruleGenerator { get; set; }
+        ClustersGenerator clustersGenerator { get; set; }
+        
+
+
         static void Main(string[] args)
         {
             //Console.WriteLine();
@@ -25,7 +32,7 @@ namespace ConsoleAppTester
                 fIGeneration.minSupport = minSupport;
                 RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
                 ClustersGenerator clustersGenerator = new ClustersGenerator();
-                clustersGenerator.minPertencia = 0.75;
+                clustersGenerator.minPertencia = 0.60;
 
                 data.LoadTransactions();
                 data.LoadClientes();
@@ -38,8 +45,24 @@ namespace ConsoleAppTester
                 Console.WriteLine("Items Podados.- "+data.items.Count);
 
                 data.PodarItemsPorSupport(minSupport);
-                fIGeneration.AprioriFrequentItemGeneration(3,data);
+                fIGeneration.AprioriFrequentItemGeneration(4,data);
+                Console.WriteLine("---------------------------------------- \n Frequents ItemSe Generados... \n Creando Clusters..");
+                List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
+                Console.WriteLine("Itemsets totales: " + fi.Count);
+                clustersGenerator.GenerarClusters(data.transactions, data.clientes, fi);
 
+                /*
+                Analyzer analyzer = new Analyzer();
+                analyzer.minPertenencia = 0.75;
+                analyzer.minPertenencia = 0.75;
+                analyzer.minSupport = 0.01;
+                analyzer.LoadData();
+                analyzer.PodarDatos(0.1/100);
+                //analyzer.data.PodarItemsPorSupport(0.1);
+                
+                analyzer.GenerarFrequentItemSets(2);
+                Console.WriteLine(analyzer.fIGeneration.candidates.Count);*/
+                
                 foreach (ItemSet itemset in fIGeneration.candidates)
                 {
                     String cods = "";
@@ -47,8 +70,8 @@ namespace ConsoleAppTester
                     Console.WriteLine("Conjunto frecuente -> Support: " + itemset.support + " Conjunto: " + cods);
 
                 }
-                List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
-                clustersGenerator.GenerarClusters(data.transactions, data.clientes, fi);
+            //    List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
+            //    clustersGenerator.GenerarClusters(data.transactions, data.clientes, fi);
 
                 foreach(Cluster c in clustersGenerator.clusters)
                 {
@@ -58,7 +81,7 @@ namespace ConsoleAppTester
                         Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.pertenencia+" al cluster");
                     }
                 }
-
+                Console.WriteLine(clustersGenerator.clusters.Capacity+" Cluster final " + clustersGenerator.clusters.Count);
                 Console.WriteLine("Terminó!");
                 Console.ReadLine();
             }
