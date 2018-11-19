@@ -126,6 +126,7 @@
             this.aceClusters.Name = "aceClusters";
             this.aceClusters.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceClusters.Text = "Clusters";
+            this.aceClusters.Click += new System.EventHandler(this.aceClusters_Click);
             // 
             // fluentDesignFormControl1
             // 

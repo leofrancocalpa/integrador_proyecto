@@ -135,7 +135,7 @@
             this.groupPoda.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupPoda.Location = new System.Drawing.Point(55, 52);
             this.groupPoda.Name = "groupPoda";
-            this.groupPoda.Size = new System.Drawing.Size(451, 188);
+            this.groupPoda.Size = new System.Drawing.Size(493, 205);
             this.groupPoda.TabIndex = 10;
             this.groupPoda.TabStop = false;
             this.groupPoda.Text = "Podar Datos";
@@ -149,15 +149,15 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "%";
             // 
-            // ucPodarDatoscs
+            // ucPodarDatos
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupPoda);
-            this.Name = "ucPodarDatoscs";
-            this.Size = new System.Drawing.Size(570, 301);
+            this.Name = "ucPodarDatos";
+            this.Size = new System.Drawing.Size(674, 429);
             this.groupPoda.ResumeLayout(false);
             this.groupPoda.PerformLayout();
             this.ResumeLayout(false);

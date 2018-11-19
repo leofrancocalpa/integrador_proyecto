@@ -88,6 +88,12 @@
     <Compile Include="ucConsultaItemSets.Designer.cs">
       <DependentUpon>ucConsultaItemSets.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucConsultasClusters.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucConsultasClusters.Designer.cs">
+      <DependentUpon>ucConsultasClusters.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucGenClusters.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -105,12 +111,6 @@
     </Compile>
     <Compile Include="ucGenReglas.Designer.cs">
       <DependentUpon>ucGenReglas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ucGridItemSets.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucGridItemSets.Designer.cs">
-      <DependentUpon>ucGridItemSets.cs</DependentUpon>
     </Compile>
     <Compile Include="ucPodarDatos.cs">
       <SubType>UserControl</SubType>
@@ -137,6 +137,9 @@
     </Compile>
     <EmbeddedResource Include="ucConsultaItemSets.resx">
       <DependentUpon>ucConsultaItemSets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucConsultasClusters.resx">
+      <DependentUpon>ucConsultasClusters.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucGenClusters.resx">
       <DependentUpon>ucGenClusters.cs</DependentUpon>

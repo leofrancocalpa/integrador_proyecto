@@ -19,6 +19,7 @@ namespace GUI
         private ucGenReglas ucGenR;
         private ucGenClusters ucGenC;
         private ucConsultaItemSets ucCItemSets;
+        private ucConsultasClusters ucCCluster;
 
         //private ucProgressPanel progressPanel;
         public VentanaPrincipal()
@@ -41,6 +42,9 @@ namespace GUI
 
             ucCItemSets = new ucConsultaItemSets();
             ucCItemSets.principal = this;
+
+            ucCCluster = new ucConsultasClusters();
+            ucCCluster.principal = this;
 
             //progressPanel = new ucProgressPanel();
         }
@@ -84,6 +88,7 @@ namespace GUI
             analyzer.GenerarClusters();
             String nC = analyzer.clustersGenerator.clusters.Count+"";
             ucGenC.LlenarDatos(nC);
+            ucCCluster.clusters = analyzer.clustersGenerator.clusters;
         }
         
         //Events Acordion ScrollBar
@@ -140,6 +145,17 @@ namespace GUI
                 ucCItemSets.BringToFront();
             }
             ucCItemSets.BringToFront();
+        }
+
+        private void aceClusters_Click(object sender, EventArgs e)
+        {
+            if (!container.Controls.Contains(ucCCluster))
+            {
+                container.Controls.Add(ucCCluster);
+                ucCCluster.Dock = DockStyle.Fill;
+                ucCCluster.BringToFront();
+            }
+            ucCCluster.BringToFront();
         }
     }
 }

@@ -93,7 +93,7 @@
             this.groupInformacion.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupInformacion.Location = new System.Drawing.Point(45, 26);
             this.groupInformacion.Name = "groupInformacion";
-            this.groupInformacion.Size = new System.Drawing.Size(416, 108);
+            this.groupInformacion.Size = new System.Drawing.Size(485, 108);
             this.groupInformacion.TabIndex = 12;
             this.groupInformacion.TabStop = false;
             this.groupInformacion.Text = "Informacion";
@@ -109,7 +109,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(45, 140);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(416, 108);
+            this.groupBox1.Size = new System.Drawing.Size(485, 108);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametros";
@@ -175,7 +175,7 @@
             this.groupResultado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupResultado.Location = new System.Drawing.Point(45, 254);
             this.groupResultado.Name = "groupResultado";
-            this.groupResultado.Size = new System.Drawing.Size(416, 88);
+            this.groupResultado.Size = new System.Drawing.Size(485, 88);
             this.groupResultado.TabIndex = 14;
             this.groupResultado.TabStop = false;
             this.groupResultado.Text = "Resultado";
@@ -222,7 +222,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupInformacion);
             this.Name = "ucGenItemsetF";
-            this.Size = new System.Drawing.Size(498, 380);
+            this.Size = new System.Drawing.Size(674, 429);
             this.groupInformacion.ResumeLayout(false);
             this.groupInformacion.PerformLayout();
             this.groupBox1.ResumeLayout(false);

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.groupInfo = new System.Windows.Forms.GroupBox();
-            this.tbNumFIS = new System.Windows.Forms.TextBox();
-            this.lblNumFIS = new System.Windows.Forms.Label();
             this.lblPorcentaje = new System.Windows.Forms.Label();
+            this.tbNumFIS = new System.Windows.Forms.TextBox();
             this.lblMinSupport = new System.Windows.Forms.Label();
+            this.lblNumFIS = new System.Windows.Forms.Label();
             this.tbMinSupport = new System.Windows.Forms.TextBox();
             this.Parametros = new System.Windows.Forms.GroupBox();
-            this.lblMinConfidence = new System.Windows.Forms.Label();
-            this.tbMinConfidence = new System.Windows.Forms.TextBox();
-            this.lblPorcentajeConfidence = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
+            this.lblPorcentajeConfidence = new System.Windows.Forms.Label();
+            this.tbMinConfidence = new System.Windows.Forms.TextBox();
+            this.lblMinConfidence = new System.Windows.Forms.Label();
             this.groupInfo.SuspendLayout();
             this.Parametros.SuspendLayout();
             this.SuspendLayout();
@@ -53,27 +53,10 @@
             this.groupInfo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupInfo.Location = new System.Drawing.Point(28, 31);
             this.groupInfo.Name = "groupInfo";
-            this.groupInfo.Size = new System.Drawing.Size(419, 113);
+            this.groupInfo.Size = new System.Drawing.Size(480, 113);
             this.groupInfo.TabIndex = 0;
             this.groupInfo.TabStop = false;
             this.groupInfo.Text = "Informacion";
-            // 
-            // tbNumFIS
-            // 
-            this.tbNumFIS.Location = new System.Drawing.Point(315, 30);
-            this.tbNumFIS.Name = "tbNumFIS";
-            this.tbNumFIS.ReadOnly = true;
-            this.tbNumFIS.Size = new System.Drawing.Size(75, 22);
-            this.tbNumFIS.TabIndex = 3;
-            // 
-            // lblNumFIS
-            // 
-            this.lblNumFIS.AutoSize = true;
-            this.lblNumFIS.Location = new System.Drawing.Point(22, 30);
-            this.lblNumFIS.Name = "lblNumFIS";
-            this.lblNumFIS.Size = new System.Drawing.Size(260, 14);
-            this.lblNumFIS.TabIndex = 2;
-            this.lblNumFIS.Text = "Numero de Conjuntos de Articulos Frecuentes";
             // 
             // lblPorcentaje
             // 
@@ -84,6 +67,14 @@
             this.lblPorcentaje.TabIndex = 15;
             this.lblPorcentaje.Text = "%";
             // 
+            // tbNumFIS
+            // 
+            this.tbNumFIS.Location = new System.Drawing.Point(315, 30);
+            this.tbNumFIS.Name = "tbNumFIS";
+            this.tbNumFIS.ReadOnly = true;
+            this.tbNumFIS.Size = new System.Drawing.Size(75, 22);
+            this.tbNumFIS.TabIndex = 3;
+            // 
             // lblMinSupport
             // 
             this.lblMinSupport.AutoSize = true;
@@ -92,6 +83,15 @@
             this.lblMinSupport.Size = new System.Drawing.Size(92, 14);
             this.lblMinSupport.TabIndex = 13;
             this.lblMinSupport.Text = "Soporte Minimo";
+            // 
+            // lblNumFIS
+            // 
+            this.lblNumFIS.AutoSize = true;
+            this.lblNumFIS.Location = new System.Drawing.Point(22, 30);
+            this.lblNumFIS.Name = "lblNumFIS";
+            this.lblNumFIS.Size = new System.Drawing.Size(260, 14);
+            this.lblNumFIS.TabIndex = 2;
+            this.lblNumFIS.Text = "Numero de Conjuntos de Articulos Frecuentes";
             // 
             // tbMinSupport
             // 
@@ -109,35 +109,10 @@
             this.Parametros.Controls.Add(this.lblMinConfidence);
             this.Parametros.Location = new System.Drawing.Point(28, 169);
             this.Parametros.Name = "Parametros";
-            this.Parametros.Size = new System.Drawing.Size(419, 123);
+            this.Parametros.Size = new System.Drawing.Size(480, 123);
             this.Parametros.TabIndex = 1;
             this.Parametros.TabStop = false;
             this.Parametros.Text = "Parametros";
-            // 
-            // lblMinConfidence
-            // 
-            this.lblMinConfidence.AutoSize = true;
-            this.lblMinConfidence.Location = new System.Drawing.Point(25, 35);
-            this.lblMinConfidence.Name = "lblMinConfidence";
-            this.lblMinConfidence.Size = new System.Drawing.Size(98, 13);
-            this.lblMinConfidence.TabIndex = 0;
-            this.lblMinConfidence.Text = "Confidencia Minima";
-            // 
-            // tbMinConfidence
-            // 
-            this.tbMinConfidence.Location = new System.Drawing.Point(171, 35);
-            this.tbMinConfidence.Name = "tbMinConfidence";
-            this.tbMinConfidence.Size = new System.Drawing.Size(64, 21);
-            this.tbMinConfidence.TabIndex = 1;
-            // 
-            // lblPorcentajeConfidence
-            // 
-            this.lblPorcentajeConfidence.AutoSize = true;
-            this.lblPorcentajeConfidence.Location = new System.Drawing.Point(147, 38);
-            this.lblPorcentajeConfidence.Name = "lblPorcentajeConfidence";
-            this.lblPorcentajeConfidence.Size = new System.Drawing.Size(18, 13);
-            this.lblPorcentajeConfidence.TabIndex = 2;
-            this.lblPorcentajeConfidence.Text = "%";
             // 
             // btnGenerar
             // 
@@ -149,6 +124,31 @@
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
+            // lblPorcentajeConfidence
+            // 
+            this.lblPorcentajeConfidence.AutoSize = true;
+            this.lblPorcentajeConfidence.Location = new System.Drawing.Point(147, 38);
+            this.lblPorcentajeConfidence.Name = "lblPorcentajeConfidence";
+            this.lblPorcentajeConfidence.Size = new System.Drawing.Size(18, 13);
+            this.lblPorcentajeConfidence.TabIndex = 2;
+            this.lblPorcentajeConfidence.Text = "%";
+            // 
+            // tbMinConfidence
+            // 
+            this.tbMinConfidence.Location = new System.Drawing.Point(171, 35);
+            this.tbMinConfidence.Name = "tbMinConfidence";
+            this.tbMinConfidence.Size = new System.Drawing.Size(64, 21);
+            this.tbMinConfidence.TabIndex = 1;
+            // 
+            // lblMinConfidence
+            // 
+            this.lblMinConfidence.AutoSize = true;
+            this.lblMinConfidence.Location = new System.Drawing.Point(25, 35);
+            this.lblMinConfidence.Name = "lblMinConfidence";
+            this.lblMinConfidence.Size = new System.Drawing.Size(98, 13);
+            this.lblMinConfidence.TabIndex = 0;
+            this.lblMinConfidence.Text = "Confidencia Minima";
+            // 
             // ucGenReglas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,7 +156,7 @@
             this.Controls.Add(this.Parametros);
             this.Controls.Add(this.groupInfo);
             this.Name = "ucGenReglas";
-            this.Size = new System.Drawing.Size(479, 321);
+            this.Size = new System.Drawing.Size(674, 429);
             this.groupInfo.ResumeLayout(false);
             this.groupInfo.PerformLayout();
             this.Parametros.ResumeLayout(false);
