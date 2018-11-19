@@ -12,6 +12,8 @@ namespace Model
         public String name { get; set; }
         public double price { get; set; }
         public int support { get; set; }
+        public Boolean visitado { get; set; }
+        public Boolean generaRegla { get; set; }
 
         public Item(String cod)
         {
