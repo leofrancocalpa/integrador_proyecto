@@ -19,20 +19,20 @@ namespace Model
             associationRUles = new List<Rule>();
             minConfidence = minConf;
         }
-        public List<Rule> generarTodos(List<ItemSet>frecuentes, Data datos)
+        public List<Rule> generarTodos(List<ItemSet> frecuentes, Data datos)
         {
+
             List<Rule> devolver = new List<Rule>();
             List<ItemSet> copia = (frecuentes as IEnumerable<ItemSet>).ToList();
             List<Item> objetos = new List<Item>();
             foreach (ItemSet objeto in copia)
             {
-                foreach (KeyValuePair<String,Item> item in objeto.items)
+                foreach (KeyValuePair<String, Item> item in objeto.items)
                 {
-                    if(!objetos.Any(x=> x.cod.Equals(item.Key)))
+                    if (!objetos.Any(x => x.cod.Equals(item.Key)))
                     {
                         objetos.Add(item.Value);
                     }
-                    
                 }
             }
             Boolean termino = false;
@@ -41,17 +41,17 @@ namespace Model
             while (!termino)
             {
                 ItemSet antecedente = new ItemSet();
-                antecedente.items.Add(objetos[pos].cod,objetos[pos]);
+                antecedente.items.Add(objetos[pos].cod, objetos[pos]);
                 ItemSet consecuente = new ItemSet();
                 consecuente.items.Add(objetos[pos2].cod, objetos[pos]);
                 if (pos2 + 1 < objetos.Count)
                 {
-                consecuente.items.Add(objetos[pos2+1].cod, objetos[pos2]);
+                    consecuente.items.Add(objetos[pos2 + 1].cod, objetos[pos2]);
                 }
                 double ante = objetos[pos].support;
                 double conse = supportSubitemset(consecuente, datos);
                 double respuesta = conse / ante;
-                if (respuesta >= minConfidence && respuesta<=1)
+                if (respuesta >= minConfidence && respuesta <= 1)
                 {
                     Rule regla = new Rule();
                     regla.antecedente = antecedente;
@@ -74,70 +74,64 @@ namespace Model
                 }
 
                 // demas
-                Boolean nuevo = false;
-                int avanzar = 1;
-                int estatica = 0;
-                int iteracion = 2;
-                    ItemSet izquierda = new ItemSet();
-                Boolean lleno = false;
-                double izq = 0;
-                double derecha = 0;
-                while (!nuevo)
+                }
+            Console.WriteLine(objetos.Count+"Tamaño del arreglo");
+            Boolean salirGrande = false;
+            int posicionEstatica = 0;
+            int avanzar = 0;
+            int iterador = 1;
+            int iteracion = 2;
+            Boolean llenar = false;
+            while (!salirGrande)
+            {
+            ItemSet izquierda = new ItemSet();
+                //lleno el antecedente
+                if (llenar == false)
                 {
-                    if (lleno == false)
-                    {
                     for (int i = 0; i < iteracion; i++)
                     {
-                        izquierda.items.Add(objetos[i].cod, objetos[i]);
+                        if (!izquierda.items.ContainsValue(objetos[i]))
+                        {
+                            izquierda.items.Add(objetos[i].cod, objetos[i]);
+                        }
                     }
-                        lleno = true;
-                    }
-                    ItemSet actual = new ItemSet();
-                    int estatico = iteracion;
-                    int parada = (estatico + 1) + avanzar;
-                    if (estatico + 1 >= objetos.Count)
+                }
+                ItemSet derecha = new ItemSet();
+                posicionEstatica = izquierda.items.Count+1;
+                avanzar = posicionEstatica + iterador;
+                for (int i = posicionEstatica; i <= avanzar; i++)
+                {
+                    if (!derecha.items.ContainsValue(objetos[i]))
                     {
-                        nuevo = true;
-                    }
-                    else
-                    {
-                        for (int i = estatico + 1; i < parada; i++)
-                        {
-                            actual.items.Add(objetos[i].cod, objetos[i]);
-
-                        }
-                        izq = supportSubitemset(izquierda, datos);
-                        derecha = supportSubitemset(actual, datos);
-                        double answert = derecha / izq;
-                        if (answert >= minConfidence)
-                        {
-                            Rule regla = new Rule();
-                            regla.antecedente = izquierda;
-                            regla.consecuente = actual;
-                            regla.confidence = answert;
-                            associationRUles.Add(regla);
-                        }
-                        if (parada < objetos.Count - 1)
-                        {
-                            avanzar++;
-                            actual.items.Clear();
-                        }
-                        else
-                        {
-                            lleno = false;
-                            izquierda.items.Clear();
-                            iteracion++;
-                            avanzar = iteracion + 1;
-                        }
-                        if (iteracion == objetos.Count - 2)
-                        {
-                            nuevo = true;
-                        }
+                        derecha.items.Add(objetos[i].cod, objetos[i]);
                     }
 
                     
                 }
-               
+                double respIzq = supportSubitemset(izquierda,datos);
+                double respDer = supportSubitemset(derecha, datos);
+                double respuesta = respDer/respIzq;
+                if (respuesta >= minConfidence)
+                {
+                    Rule regla = new Rule();
+                    regla.antecedente = izquierda;
+                    regla.consecuente = derecha;
+                    regla.confidence = respuesta;
+                    associationRUles.Add(regla);
+                }
+                iterador++;
+               if (posicionEstatica + iterador >= objetos.Count - 1)
+                {
+                    //llego al final
+                    iteracion++;
+                    iterador = 1;
+                    llenar = false;
+                  
+                }
+                if (iteracion >= objetos.Count - 2)
+                {
+                    salirGrande = true;
+                }
 
             }
             Console.WriteLine(associationRUles.Count + "<--------------------");
