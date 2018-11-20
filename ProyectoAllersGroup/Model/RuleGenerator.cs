@@ -19,6 +19,117 @@ namespace Model
             associationRUles = new List<Rule>();
             minConfidence = minConf;
         }
+        public List<Rule>generarTodos(List<ItemSet>frecuentes, Data datos)
+        {
+            List<Rule> devolver = new List<Rule>();
+            List<ItemSet> copia = (frecuentes as IEnumerable<ItemSet>).ToList();
+            List<Item> objetos = new List<Item>();
+            foreach (ItemSet objeto in copia)
+            {
+                foreach (KeyValuePair<String,Item> item in objeto.items)
+                {
+                    objetos.Add(item.Value);
+                }
+            }
+            Boolean termino = false;
+            int pos = 0;
+            int pos2 = 1;
+            while (!termino)
+            {
+                ItemSet antecedente = new ItemSet();
+                antecedente.items.Add(objetos[pos].cod,objetos[pos]);
+                ItemSet consecuente = new ItemSet();
+                consecuente.items.Add(objetos[pos2].cod, objetos[pos]);
+                if (pos2 + 1 < objetos.Count)
+                {
+                consecuente.items.Add(objetos[pos2+1].cod, objetos[pos2]);
+                }
+                double ante = objetos[pos].support;
+                double conse = supportSubitemset(consecuente, datos);
+                double respuesta = conse / ante;
+                if (respuesta >= minConfidence && respuesta<=1)
+                {
+                    Rule regla = new Rule();
+                    regla.antecedente = antecedente;
+                    regla.consecuente = consecuente;
+                    regla.confidence = respuesta;
+                    associationRUles.Add(regla);
+                }
+                if (pos2 >= objetos.Count - 1)
+                {
+                    pos++;
+                    pos2 = pos + 1;
+                }
+                else
+                {
+                    pos2++;
+                }
+                if (pos - 1 == objetos.Count - 2)
+                {
+                    termino = true;
+                }
+
+                // demas
+                Boolean nuevo = false;
+                int avanzar = 1;
+                int estatica = 0;
+                int iteracion = 2;
+                    ItemSet izquierda = new ItemSet();
+                Boolean lleno = false;
+                double izq = 0;
+                double derecha = 0;
+                while (!nuevo)
+                {
+                    if (lleno == false)
+                    {
+                    for (int i = 0; i < iteracion; i++)
+                    {
+                        izquierda.items.Add(objetos[i].cod, objetos[i]);
+                    }
+                        lleno = true;
+                    }
+                    ItemSet actual = new ItemSet();
+                    int estatico = iteracion;
+                    int parada = (estatico + 1) + avanzar;
+                    for (int i = estatico+1; i < parada; i++)
+                    {
+                        actual.items.Add(objetos[i].cod, objetos[i]);
+
+                    }
+                    izq = supportSubitemset(izquierda, datos);
+                    derecha = supportSubitemset(actual, datos);
+                    double answert = derecha / izq;
+                    if (answert >= minConfidence)
+                    {
+                        Rule regla = new Rule();
+                        regla.antecedente = izquierda;
+                        regla.consecuente = actual;
+                        regla.confidence = answert;
+                        associationRUles.Add(regla);
+                    }
+                    if (parada < objetos.Count - 1)
+                    {
+                        avanzar++;
+                        actual.items.Clear();
+                    }
+                    else
+                    {
+                        lleno = false;
+                        izquierda.items.Clear();
+                        iteracion++;
+                        avanzar = iteracion + 1;
+                    }
+                    if (iteracion==objetos.Count - 2)
+                    {
+                        nuevo = true;
+                    }
+                }
+               
+
+            }
+            Console.WriteLine(associationRUles.Count + "<--------------------");
+            return associationRUles;
+        }
 
         public List<Rule> generar(List<ItemSet> frecuentes, Data data)
         {
@@ -28,8 +139,7 @@ namespace Model
             //busco cuantas veces aparece la lista de 3
             //confianza =#veceslista3/#veceslista2
             // si soporte<confianza 1 y 2 implican 3
-            List<Rule> lista = new List<Rule>();
-            List<ItemSet> mirar = (frecuentes as IEnumerable<ItemSet>).ToList();
+           List<ItemSet> mirar = (frecuentes as IEnumerable<ItemSet>).ToList();
             foreach (ItemSet itemSet in mirar)
             {
 
@@ -63,8 +173,8 @@ namespace Model
                         }
                     }
                     //llenar esto
-                    double suporteSubitem = supportSubitemset(demas, data);
-                    double respuesta = suporteSubitem / (double)recorrido.support;
+                    double conjuntoSubitems = supportSubitemset(demas, data);
+                    double respuesta = conjuntoSubitems / (double)recorrido.support;
                     Console.WriteLine(respuesta + ">" + minConfidence);
                     if (respuesta >= minConfidence)
                     {
@@ -75,7 +185,6 @@ namespace Model
                         associationRUles.Add(regla);
                         actual[posicion].generaRegla = true;
                     }
-                    actual[posicion].visitado = false;
                     posicion--;
                     if (posicion < 0)
                     {
@@ -83,13 +192,9 @@ namespace Model
                     }
                 }
                 //combinaciones
-
-
-
-
-             
+            
             }
-            Console.WriteLine(lista.Count+"<--------------------");
+           
             return associationRUles;
         }
         public int supportSubitemset(ItemSet subconjunto, Data datos)

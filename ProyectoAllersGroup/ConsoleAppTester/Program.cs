@@ -40,13 +40,13 @@ namespace ConsoleAppTester
                 Console.WriteLine("Items Podados.- " + data.items.Count);
 
                 data.PodarItemsPorSupport(minSupport);
-                fIGeneration.AprioriFrequentItemGeneration(3, data);
+                fIGeneration.AprioriFrequentItemGeneration(4, data);
                 List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
-
+                List<ItemSet> fiTotales = fIGeneration.candidates.ToList();
                 Console.WriteLine("Itemsets totales: " + fi.Count);
                 Console.WriteLine("---------------------------------------- \n Frequents ItemSe Generados... \n Creando Reglas de asociacion ...");
                 //Generando Reglas 
-                ruleGenerator.generar(fi, data);
+                ruleGenerator.generarTodos(fiTotales, data);
                 Console.WriteLine(ruleGenerator.associationRUles.Count+"++++++++");
                 foreach(Rule rule in ruleGenerator.associationRUles)
                 {
