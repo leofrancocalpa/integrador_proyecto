@@ -83,7 +83,7 @@ namespace ConsoleAppTester
                     Console.WriteLine("Cluster: "+c.agrupador.ToString());
                     foreach(Elemento e in c.elementos)
                     {
-                        Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.pertenencia+" al cluster");
+                        Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.per+" al cluster");
                     }
                 }
                 Console.WriteLine(" Clusters final " + clustersGenerator.clusters.Count);

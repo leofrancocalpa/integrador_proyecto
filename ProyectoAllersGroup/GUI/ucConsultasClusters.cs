@@ -36,9 +36,11 @@ namespace GUI
             foreach(DataGridViewRow row in this.gridViewCLusters.SelectedRows)
             {   
                 Cluster cluster = row.DataBoundItem as Cluster;
+                cluster = principal.analyzer.clustersGenerator.clusters.First(x => x.Id.Equals(cluster.Id));
                 if (cluster != null)
                 {
-                    List<Cliente> clientes = new List<Cliente>();
+                    List<Cliente> clientes = new List<Cliente>();// cluster.elementos;
+                    
                     foreach (Elemento elemento in cluster.elementos)
                     {
                         clientes.Add(elemento.cliente);
@@ -56,6 +58,8 @@ namespace GUI
 
         private void ShowClientes(List<Cliente> clientes)
         {
+            textBox1.Text = "";
+            textBox1.AppendText(clientes.Count.ToString());
             dataGridView1.DataSource = clientes;
         }
     }

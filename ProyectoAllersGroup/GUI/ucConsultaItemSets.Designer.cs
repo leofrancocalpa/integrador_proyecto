@@ -43,7 +43,7 @@
             // 
             this.btnMostrar.Location = new System.Drawing.Point(567, 358);
             this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(75, 23);
+            this.btnMostrar.Size = new System.Drawing.Size(75, 39);
             this.btnMostrar.TabIndex = 1;
             this.btnMostrar.Text = "Mostrar";
             this.btnMostrar.UseVisualStyleBackColor = true;
@@ -57,7 +57,7 @@
             this.gridFrequentItemSets.Location = new System.Drawing.Point(42, 87);
             this.gridFrequentItemSets.Name = "gridFrequentItemSets";
             this.gridFrequentItemSets.ReadOnly = true;
-            this.gridFrequentItemSets.Size = new System.Drawing.Size(298, 263);
+            this.gridFrequentItemSets.Size = new System.Drawing.Size(298, 310);
             this.gridFrequentItemSets.TabIndex = 2;
             this.gridFrequentItemSets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.gridFrequentItemSets.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);

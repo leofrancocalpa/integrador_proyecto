@@ -10,7 +10,7 @@ namespace Model
     {
         public String Id { get; set; }
         public List<Elemento> elementos { get; set; }
-        public List<Double> pertenencias { get; }
+        //public List<Double> pertenencias { get; }
         public ItemSet agrupador;
         
 
@@ -18,7 +18,7 @@ namespace Model
         {
             agrupador = cen;
             elementos = new List<Elemento>();
-            pertenencias = new List<double>();
+            //pertenencias = new List<double>();
             Id = cen.ToString();
         }
 

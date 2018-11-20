@@ -62,7 +62,7 @@ namespace Model
                             {
                                 if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
+                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
                                 }
                                 else
                                 {
@@ -76,7 +76,7 @@ namespace Model
                                 cluster.elementos.Add(elementos[transaccion.Value.codCliente]);
                                 if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
+                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
                                 }
                                 else
                                 {
@@ -93,7 +93,7 @@ namespace Model
                             cluster.elementos.Add(elemento);
                             if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
                             {
-                                pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add(valor / cluster.agrupador.items.Count);
+                                pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count)*100);
                             }
                             else
                             {
@@ -118,6 +118,8 @@ namespace Model
                     //Console.WriteLine("Average ANtes");
                     //Console.WriteLine(Ci.agrupador.ToString() + e.cliente.codigo + "");
                     e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.cliente.codigo].Average();
+                    String d = Math.Truncate(e.pertenencia).ToString();
+                    e.per = d;
                     //Console.WriteLine("Average despues");
                 }
             }
