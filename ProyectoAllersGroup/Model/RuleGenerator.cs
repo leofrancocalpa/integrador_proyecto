@@ -47,7 +47,7 @@ namespace Model
                 double ante = objetos[pos].support;
                 double conse = supportSubitemset(consecuente, datos);
                 double respuesta = conse / ante;
-                if (respuesta >= minConfidence)
+                if (respuesta >= minConfidence && respuesta<=1)
                 {
                     Rule regla = new Rule();
                     regla.antecedente = antecedente;
@@ -67,6 +67,62 @@ namespace Model
                 if (pos - 1 == objetos.Count - 2)
                 {
                     termino = true;
+                }
+
+                // demas
+                Boolean nuevo = false;
+                int avanzar = 1;
+                int estatica = 0;
+                int iteracion = 2;
+                    ItemSet izquierda = new ItemSet();
+                Boolean lleno = false;
+                double izq = 0;
+                double derecha = 0;
+                while (!nuevo)
+                {
+                    if (lleno == false)
+                    {
+                    for (int i = 0; i < iteracion; i++)
+                    {
+                        izquierda.items.Add(objetos[i].cod, objetos[i]);
+                    }
+                        lleno = true;
+                    }
+                    ItemSet actual = new ItemSet();
+                    int estatico = iteracion;
+                    int parada = (estatico + 1) + avanzar;
+                    for (int i = estatico+1; i < parada; i++)
+                    {
+                        actual.items.Add(objetos[i].cod, objetos[i]);
+
+                    }
+                    izq = supportSubitemset(izquierda, datos);
+                    derecha = supportSubitemset(actual, datos);
+                    double answert = derecha / izq;
+                    if (answert >= minConfidence)
+                    {
+                        Rule regla = new Rule();
+                        regla.antecedente = izquierda;
+                        regla.consecuente = actual;
+                        regla.confidence = answert;
+                        associationRUles.Add(regla);
+                    }
+                    if (parada < objetos.Count - 1)
+                    {
+                        avanzar++;
+                        actual.items.Clear();
+                    }
+                    else
+                    {
+                        lleno = false;
+                        izquierda.items.Clear();
+                        iteracion++;
+                        avanzar = iteracion + 1;
+                    }
+                    if (iteracion==objetos.Count - 2)
+                    {
+                        nuevo = true;
+                    }
                 }
                
 
