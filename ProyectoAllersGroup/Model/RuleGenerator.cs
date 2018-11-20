@@ -46,7 +46,7 @@ namespace Model
                 }
                 double ante = objetos[pos].support;
                 double conse = supportSubitemset(consecuente, datos);
-                double respuesta = ante / conse;
+                double respuesta = conse / ante;
                 if (respuesta >= minConfidence)
                 {
                     Rule regla = new Rule();

@@ -24,7 +24,7 @@ namespace ConsoleAppTester
                 Data data = new Data(false);
                 FIGeneration fIGeneration = new FIGeneration();
                 fIGeneration.minSupport = minSupport;
-                RuleGenerator ruleGenerator = new RuleGenerator(minConfidence);
+                RuleGenerator ruleGenerator = new RuleGenerator(minConfidence/100);
 
                 ClustersGenerator clustersGenerator = new ClustersGenerator();
                 clustersGenerator.minPertencia = 0.60;
