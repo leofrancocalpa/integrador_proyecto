@@ -19,7 +19,7 @@ namespace Model
             associationRUles = new List<Rule>();
             minConfidence = minConf;
         }
-        public List<Rule>generarTodos(List<ItemSet>frecuentes, Data datos)
+        public List<Rule> generarTodos(List<ItemSet>frecuentes, Data datos)
         {
             List<Rule> devolver = new List<Rule>();
             List<ItemSet> copia = (frecuentes as IEnumerable<ItemSet>).ToList();
@@ -28,7 +28,11 @@ namespace Model
             {
                 foreach (KeyValuePair<String,Item> item in objeto.items)
                 {
-                    objetos.Add(item.Value);
+                    if(!objetos.Any(x=> x.cod.Equals(item.Key)))
+                    {
+                        objetos.Add(item.Value);
+                    }
+                    
                 }
             }
             Boolean termino = false;
@@ -91,38 +95,47 @@ namespace Model
                     ItemSet actual = new ItemSet();
                     int estatico = iteracion;
                     int parada = (estatico + 1) + avanzar;
-                    for (int i = estatico+1; i < parada; i++)
-                    {
-                        actual.items.Add(objetos[i].cod, objetos[i]);
-
-                    }
-                    izq = supportSubitemset(izquierda, datos);
-                    derecha = supportSubitemset(actual, datos);
-                    double answert = derecha / izq;
-                    if (answert >= minConfidence)
-                    {
-                        Rule regla = new Rule();
-                        regla.antecedente = izquierda;
-                        regla.consecuente = actual;
-                        regla.confidence = answert;
-                        associationRUles.Add(regla);
-                    }
-                    if (parada < objetos.Count - 1)
-                    {
-                        avanzar++;
-                        actual.items.Clear();
-                    }
-                    else
-                    {
-                        lleno = false;
-                        izquierda.items.Clear();
-                        iteracion++;
-                        avanzar = iteracion + 1;
-                    }
-                    if (iteracion==objetos.Count - 2)
+                    if (estatico + 1 >= objetos.Count)
                     {
                         nuevo = true;
                     }
+                    else
+                    {
+                        for (int i = estatico + 1; i < parada; i++)
+                        {
+                            actual.items.Add(objetos[i].cod, objetos[i]);
+
+                        }
+                        izq = supportSubitemset(izquierda, datos);
+                        derecha = supportSubitemset(actual, datos);
+                        double answert = derecha / izq;
+                        if (answert >= minConfidence)
+                        {
+                            Rule regla = new Rule();
+                            regla.antecedente = izquierda;
+                            regla.consecuente = actual;
+                            regla.confidence = answert;
+                            associationRUles.Add(regla);
+                        }
+                        if (parada < objetos.Count - 1)
+                        {
+                            avanzar++;
+                            actual.items.Clear();
+                        }
+                        else
+                        {
+                            lleno = false;
+                            izquierda.items.Clear();
+                            iteracion++;
+                            avanzar = iteracion + 1;
+                        }
+                        if (iteracion == objetos.Count - 2)
+                        {
+                            nuevo = true;
+                        }
+                    }
+
+                    
                 }
                
 

@@ -65,6 +65,7 @@ namespace Model
         public void GenerarClusters()
         {
             List<ItemSet> fIS = fIGeneration.candidates.Where(x => (x.items.Count > 1)).ToList();
+            clustersGenerator.minPertencia = minPertenencia;
             clustersGenerator.GenerarClusters(data.transactions, data.clientes, fIS);
         }
 

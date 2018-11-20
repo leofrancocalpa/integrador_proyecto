@@ -36,6 +36,7 @@
             this.lblClientes = new System.Windows.Forms.Label();
             this.lblReglas = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbInfoClientes = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCLusters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -127,10 +128,20 @@
             this.textBox1.Size = new System.Drawing.Size(100, 21);
             this.textBox1.TabIndex = 7;
             // 
+            // tbInfoClientes
+            // 
+            this.tbInfoClientes.Location = new System.Drawing.Point(58, 433);
+            this.tbInfoClientes.Multiline = true;
+            this.tbInfoClientes.Name = "tbInfoClientes";
+            this.tbInfoClientes.ReadOnly = true;
+            this.tbInfoClientes.Size = new System.Drawing.Size(267, 94);
+            this.tbInfoClientes.TabIndex = 8;
+            // 
             // ucConsultasClusters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tbInfoClientes);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lblReglas);
             this.Controls.Add(this.lblClientes);
@@ -140,7 +151,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.gridViewCLusters);
             this.Name = "ucConsultasClusters";
-            this.Size = new System.Drawing.Size(674, 429);
+            this.Size = new System.Drawing.Size(745, 556);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCLusters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -159,5 +170,6 @@
         private System.Windows.Forms.Label lblClientes;
         private System.Windows.Forms.Label lblReglas;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbInfoClientes;
     }
 }

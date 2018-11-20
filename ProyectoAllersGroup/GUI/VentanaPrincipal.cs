@@ -85,6 +85,7 @@ namespace GUI
 
         public void GenerarClusters(double pertenencia)
         {
+            analyzer.minPertenencia = pertenencia;
             analyzer.GenerarClusters();
             String nC = analyzer.clustersGenerator.clusters.Count+"";
             ucGenC.LlenarDatos(nC);

@@ -39,13 +39,14 @@ namespace GUI
                 cluster = principal.analyzer.clustersGenerator.clusters.First(x => x.Id.Equals(cluster.Id));
                 if (cluster != null)
                 {
-                    List<Cliente> clientes = new List<Cliente>();// cluster.elementos;
-                    
+                    List<Elemento> clientes =  cluster.elementos;
+                    /*
                     foreach (Elemento elemento in cluster.elementos)
                     {
-                        clientes.Add(elemento.cliente);
-                    }
+                        clientes.Add(elemento);
+                    }*/
                     ShowClientes(clientes);
+                    ShowTex(clientes);
                 }
                 
             }
@@ -56,11 +57,31 @@ namespace GUI
 
         }
 
-        private void ShowClientes(List<Cliente> clientes)
+        private void ShowClientes(List<Elemento> clientes)
         {
             textBox1.Text = "";
             textBox1.AppendText(clientes.Count.ToString());
+            /*dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+            DataGridViewColumn c1 = new DataGridViewTextBoxColumn();
+            c1.Name = "Codigo";
+            
+            dataGridView1.Columns.Add(c1);
+            foreach (Elemento cliente in clientes)
+            {
+                dataGridView1.Rows.Add(cliente.per);
+            }*/
             dataGridView1.DataSource = clientes;
+        }
+
+        private void ShowTex(List<Elemento> elementos)
+        {
+            tbInfoClientes.Text = "";
+            foreach (Elemento e in elementos)
+            {
+                
+                tbInfoClientes.Text += e.id + " %" + e.per+"\n";
+            }
         }
     }
 }

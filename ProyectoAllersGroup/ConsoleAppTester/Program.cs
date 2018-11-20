@@ -40,7 +40,7 @@ namespace ConsoleAppTester
                 Console.WriteLine("Items Podados.- " + data.items.Count);
 
                 data.PodarItemsPorSupport(minSupport);
-                fIGeneration.AprioriFrequentItemGeneration(4, data);
+                fIGeneration.AprioriFrequentItemGeneration(3, data);
                 List<ItemSet> fi = fIGeneration.candidates.Where(x => x.items.Count > 1).ToList();
                 List<ItemSet> fiTotales = fIGeneration.candidates.ToList();
                 Console.WriteLine("Itemsets totales: " + fi.Count);
@@ -83,7 +83,7 @@ namespace ConsoleAppTester
                     Console.WriteLine("Cluster: "+c.agrupador.ToString());
                     foreach(Elemento e in c.elementos)
                     {
-                        Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.per+" al cluster");
+                        Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.pertenencia+" al cluster");
                     }
                 }
                 Console.WriteLine(" Clusters final " + clustersGenerator.clusters.Count);
