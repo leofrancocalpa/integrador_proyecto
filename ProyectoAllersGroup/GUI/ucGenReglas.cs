@@ -21,6 +21,9 @@ namespace GUI
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
+            double confianza = Convert.ToDouble(tbMinConfidence.Text);
+            btnGenerar.Enabled = false;
+            principal.GenerarReglas(confianza);
 
         }
     }

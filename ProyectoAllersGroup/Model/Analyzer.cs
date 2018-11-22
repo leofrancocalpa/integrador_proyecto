@@ -15,12 +15,15 @@ namespace Model
         public double minSupport { get; set; }
         public double minConfidence { get; set; }
         public double minPertenencia { get; set; }
+        public int tamanoMaxDeItemSet { get; set; }
+        public double minOcurrencias { get; set; }
 
         public Analyzer()
         {
             data = new Data(false);
             fIGeneration = new FIGeneration();
             clustersGenerator = new ClustersGenerator();
+            ruleGenerator = new RuleGenerator();
         }
 
         public bool LoadData()
@@ -37,19 +40,19 @@ namespace Model
             }
         }
 
-        public void PodarDatos(double minTransactions)
+        public void PodarDatos()
         {
-            data.PodarTransacciones(minTransactions);
+            data.PodarTransacciones(minOcurrencias);
             data.PodarClientes();
             data.PodarArticulos();
             
         }
 
-        public void GenerarFrequentItemSets(int maxItemSetsLength)
+        public void GenerarFrequentItemSets()
         {
             data.PodarItemsPorSupport(minSupport);
             fIGeneration.minSupport = minSupport;
-            fIGeneration.AprioriFrequentItemGeneration(maxItemSetsLength, data);
+            fIGeneration.AprioriFrequentItemGeneration(tamanoMaxDeItemSet, data);
         }
 
         public List<ItemSet> GetItemSets()
@@ -59,7 +62,9 @@ namespace Model
 
         public void GenerarReglas()
         {
-
+            ruleGenerator.minConfidence = minConfidence;
+            List<ItemSet> fIS = fIGeneration.candidates.Where(x => (x.items.Count > 1 && x.items.Count<5)).ToList();
+            ruleGenerator.GenerarReglas(fIS, fIGeneration);
         }
 
         public void GenerarClusters()

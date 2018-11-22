@@ -12,6 +12,8 @@ namespace Model
         public ItemSet antecedente { get; set; }
         public ItemSet consecuente { get; set; }
 
+        public ItemSet padre { get; set; }
+
         public Rule()
         {
             antecedente = new ItemSet();

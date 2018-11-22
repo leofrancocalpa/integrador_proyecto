@@ -9,237 +9,128 @@ namespace Model
     public class RuleGenerator
     {
         public double minConfidence { get; set; }
-        public List<Rule> associationRUles { get; set; }
+        public List<Rule> associationRules { get; set; }
 
-        static Func<int, double> factorial = x => Enumerable.Range(1, x).Aggregate(1.0, (a, b) => a * b);
-        static Func<int, int, double> combinatoria = (x, y) => (factorial(x)) / ((factorial(y)) * factorial(x - y));
-
-        public RuleGenerator(double minConf)
+        public RuleGenerator()
         {
-            associationRUles = new List<Rule>();
-            minConfidence = minConf;
+            associationRules = new List<Rule>();
         }
-        public List<Rule> generarTodos(List<ItemSet> frecuentes, Data datos)
+
+        public void GenerarReglas(List<ItemSet> itemSets, FIGeneration fIGeneration)
         {
-
-            List<Rule> devolver = new List<Rule>();
-            List<ItemSet> copia = (frecuentes as IEnumerable<ItemSet>).ToList();
-            List<Item> objetos = new List<Item>();
-            foreach (ItemSet objeto in copia)
+            foreach(ItemSet itemSet in itemSets)
             {
-                foreach (KeyValuePair<String, Item> item in objeto.items)
+                int enumerador = itemSet.items.Count-1;
+                int indicador = 0;
+                
+                
+                for(int index=0; index <itemSet.items.Count-1;index++)
                 {
-                    if (!objetos.Any(x => x.cod.Equals(item.Key)))
+                    ItemSet[] antecedenteConsecuente = Particionar(itemSet, index);
+                    ItemSet antecedente = antecedenteConsecuente[0];
+                    ItemSet consecuente = antecedenteConsecuente[1];
+                    Rule rulePrincipal = new Rule();
+                    rulePrincipal.antecedente = antecedente;
+                    rulePrincipal.consecuente = consecuente;
+                    rulePrincipal.padre = itemSet;
+                    associationRules.Add(rulePrincipal);
+                    //swap
+                    for(int i=antecedente.items.Count-1; i>-1; i--)
                     {
-                        objetos.Add(item.Value);
-                    }
-                }
-            }
-            Boolean termino = false;
-            int pos = 0;
-            int pos2 = 1;
-            while (!termino)
-            {
-                ItemSet antecedente = new ItemSet();
-                antecedente.items.Add(objetos[pos].cod, objetos[pos]);
-                ItemSet consecuente = new ItemSet();
-                consecuente.items.Add(objetos[pos2].cod, objetos[pos]);
-                if (pos2 + 1 < objetos.Count)
-                {
-                    consecuente.items.Add(objetos[pos2 + 1].cod, objetos[pos2]);
-                }
-                double ante = objetos[pos].support;
-                double conse = supportSubitemset(consecuente, datos);
-                double respuesta = conse / ante;
-                if (respuesta >= minConfidence && respuesta <= 1)
-                {
-                    Rule regla = new Rule();
-                    regla.antecedente = antecedente;
-                    regla.consecuente = consecuente;
-                    regla.confidence = respuesta;
-                    associationRUles.Add(regla);
-                }
-                if (pos2 >= objetos.Count - 1)
-                {
-                    pos++;
-                    pos2 = pos + 1;
-                }
-                else
-                {
-                    pos2++;
-                }
-                if (pos - 1 == objetos.Count - 2)
-                {
-                    termino = true;
-                }
-
-                // demas
-                }
-            Console.WriteLine(objetos.Count+"Tamaño del arreglo");
-            Boolean salirGrande = false;
-            int posicionEstatica = 0;
-            int avanzar = 0;
-            int iterador = 1;
-            int iteracion = 2;
-            Boolean llenar = false;
-            while (!salirGrande)
-            {
-            ItemSet izquierda = new ItemSet();
-                //lleno el antecedente
-                if (llenar == false)
-                {
-                    for (int i = 0; i < iteracion; i++)
-                    {
-                        if (!izquierda.items.ContainsValue(objetos[i]))
+                        for(int j=0; j<consecuente.items.Count; j++)
                         {
-                            izquierda.items.Add(objetos[i].cod, objetos[i]);
+                            ItemSet ant1 = new ItemSet();
+                            ItemSet con1 = new ItemSet();
+                            KeyValuePair<String, Item> itemAnt = antecedente.items.ElementAt(i);
+                            KeyValuePair<String, Item> itemCon = consecuente.items.ElementAt(j);
+                            foreach(KeyValuePair<String, Item> itemA in antecedente.items)
+                            {
+                                if (itemA.Key.Equals(itemAnt.Key))
+                                {
+                                    ant1.items.Add(itemCon.Key,itemCon.Value);
+                                }
+                                else
+                                {
+                                    ant1.items.Add(itemA.Key, itemA.Value);
+                                }
+                            }
+                            foreach(KeyValuePair<String, Item> itemC in consecuente.items)
+                            {
+                                if (itemC.Key.Equals(itemCon.Key))
+                                {
+                                    con1.items.Add(itemAnt.Key, itemAnt.Value);
+                                }
+                                else
+                                {
+                                    con1.items.Add(itemC.Key, itemC.Value);
+                                }
+                            }
+                            Rule newRule = new Rule();
+                            newRule.antecedente = ant1;
+                            newRule.consecuente = con1;
+                            newRule.padre = itemSet;
+                            associationRules.Add(newRule);
                         }
                     }
                 }
-                ItemSet derecha = new ItemSet();
-                posicionEstatica = izquierda.items.Count+1;
-                avanzar = posicionEstatica + iterador;
-                for (int i = posicionEstatica; i <= avanzar; i++)
-                {
-                    if (!derecha.items.ContainsValue(objetos[i]))
-                    {
-                        derecha.items.Add(objetos[i].cod, objetos[i]);
-                    }
 
-                    
-                }
-                double respIzq = supportSubitemset(izquierda,datos);
-                double respDer = supportSubitemset(derecha, datos);
-                double respuesta = respDer/respIzq;
-                if (respuesta >= minConfidence)
-                {
-                    Rule regla = new Rule();
-                    regla.antecedente = izquierda;
-                    regla.consecuente = derecha;
-                    regla.confidence = respuesta;
-                    associationRUles.Add(regla);
-                }
-                iterador++;
-               if (posicionEstatica + iterador >= objetos.Count - 1)
-                {
-                    //llego al final
-                    iteracion++;
-                    iterador = 1;
-                    llenar = false;
-                  
-                }
-                if (iteracion >= objetos.Count - 2)
-                {
-                    salirGrande = true;
-                }
-
+                CalcularConfianza(fIGeneration);
+                Prunning();
             }
-            Console.WriteLine(associationRUles.Count + "<--------------------");
-            return associationRUles;
         }
 
-        public List<Rule> generar(List<ItemSet> frecuentes, Data data)
+        public ItemSet[] Particionar(ItemSet itemSet, int indice)
         {
-            // lista de 3
-            //cojo 2 items
-            //esos 2 items les busco cuantas veces aparecen
-            //busco cuantas veces aparece la lista de 3
-            //confianza =#veceslista3/#veceslista2
-            // si soporte<confianza 1 y 2 implican 3
-           List<ItemSet> mirar = (frecuentes as IEnumerable<ItemSet>).ToList();
-            foreach (ItemSet itemSet in mirar)
+            int indice2 = indice + 0;
+            int numCons = indice + 1;
+            ItemSet[] salida = new ItemSet[2];
+            ItemSet antecedente = new ItemSet();
+            ItemSet consecuente = new ItemSet();
+            List<Item> items = new List<Item>();
+            for(int i=0; i<numCons; i++)
             {
-
-                //Conjunto de items sacados del itemset frecuente 
-                Item[] actual = new Item[itemSet.items.Count];
-                double soporteDelItemset = itemSet.support;
-                int i = 0;
-                //llena el arreglo de items "actual" con items pertenecientes al itemset.
-                foreach (KeyValuePair<String, Item> item in itemSet.items)
-                {
-                    item.Value.visitado = false;
-                    actual[i] = item.Value;
-                    i++;
-                }
-                //caso base
-                Boolean primero = false;
-                int posicion = actual.Length - 1;
-                while (!primero)
-                {
-                    // forma a,b,c->d
-                    ItemSet recorrido = new ItemSet();
-                    recorrido.items.Add(actual[posicion].cod, actual[posicion]);
-                    actual[posicion].visitado = true;
-                    ItemSet demas = new ItemSet();
-                    // llena el itemset a buscar, osea {a,b,c} a ver si implica ->d
-                    for (int j = 0; j < actual.Length; j++)
-                    {
-                        if (actual[j].visitado == false)
-                        {
-                            demas.items.Add(actual[j].cod, actual[j]);
-                        }
-                    }
-                    //llenar esto
-                    double conjuntoSubitems = supportSubitemset(demas, data);
-                    double respuesta = conjuntoSubitems / (double)recorrido.support;
-                    Console.WriteLine(respuesta + ">" + minConfidence);
-                    if (respuesta >= minConfidence)
-                    {
-                        Rule regla = new Rule();
-                        regla.antecedente = demas;
-                        regla.consecuente = recorrido;
-                        regla.confidence = respuesta;
-                        associationRUles.Add(regla);
-                        actual[posicion].generaRegla = true;
-                    }
-                    posicion--;
-                    if (posicion < 0)
-                    {
-                        primero = true;
-                    }
-                }
-                //combinaciones
-            
+                int index = (itemSet.items.Count - 1) - indice2;
+                Item item = itemSet.items.ElementAt(index).Value;
+                items.Add(item);
+                indice2--;
             }
-           
-            return associationRUles;
-        }
-        public int supportSubitemset(ItemSet subconjunto, Data datos)
-        {
-            subconjunto.support = 0;
-            Dictionary<String, Transaction> transactions = datos.transactions;
-            foreach (KeyValuePair<String, Transaction> transaccion in transactions)
+            foreach(Item item in items)
             {
-                int valor = 0;
-                foreach (KeyValuePair<String, Item> item in subconjunto.items)
-                {
-                    if (transaccion.Value.itemsInTransaction.items.ContainsKey(item.Key))
-                    {
-                        valor++;
-
-                    }
-                }
-
-                if (valor == subconjunto.items.Count)
-                {
-                    subconjunto.IncreaseSupport();
-                }
-
+                consecuente.items.Add(item.cod, item);
             }
-            return subconjunto.support;
+            List<KeyValuePair<String, Item>> itemsAnt = itemSet.items.Where(x => !(consecuente.items.ContainsKey(x.Key))).ToList();
+            foreach(KeyValuePair<String, Item> item in itemsAnt)
+            {
+                antecedente.items.Add(item.Key, item.Value);
+            }
+            salida[0] = antecedente;
+            salida[1] = consecuente;
 
-
+            return salida;
         }
 
-        public double cuantasPosiblesReglas(double k)
+        private void CalcularConfianza(FIGeneration fIGeneration)
         {
-            double r = Math.Pow(2, k) - 2;
-            return r;
+            foreach(Rule rule in associationRules)
+            {
+                double numerador = rule.padre.support;
+                double denominador = fIGeneration.candidates.First(x => x.Equals(x, rule.consecuente)).support;
+                double confianza = numerador / denominador;
+                rule.confidence = Math.Round(confianza,1);
+            }
         }
 
-        public void PrunningRules()
+        public void Prunning()
         {
-
+            for(int i=0; i<associationRules.Count; i++)
+            {
+                if (associationRules.ElementAt(i).confidence < minConfidence)
+                {
+                    associationRules.RemoveAt(i);
+                }
+                
+            }
         }
+        
     }
 }

@@ -46,10 +46,11 @@
             // 
             // container
             // 
+            this.container.AllowTouchScroll = true;
             this.container.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.container.Location = new System.Drawing.Point(247, 30);
+            this.container.Location = new System.Drawing.Point(302, 51);
             this.container.Name = "container";
-            this.container.Size = new System.Drawing.Size(647, 448);
+            this.container.Size = new System.Drawing.Size(761, 492);
             this.container.TabIndex = 0;
             // 
             // accordionControl1
@@ -60,10 +61,10 @@
             this.acePodarDatos,
             this.acegAlgoritmos,
             this.acegConsultas});
-            this.accordionControl1.Location = new System.Drawing.Point(0, 30);
+            this.accordionControl1.Location = new System.Drawing.Point(0, 51);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(247, 448);
+            this.accordionControl1.Size = new System.Drawing.Size(302, 492);
             this.accordionControl1.TabIndex = 1;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -80,7 +81,6 @@
             this.aceGenFIS,
             this.aceGAR,
             this.aceGC});
-            this.acegAlgoritmos.Expanded = true;
             this.acegAlgoritmos.Name = "acegAlgoritmos";
             this.acegAlgoritmos.Text = "Ajustes de Algoritmos";
             // 
@@ -110,7 +110,6 @@
             this.acegConsultas.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.aceArtFrecuentes,
             this.aceClusters});
-            this.acegConsultas.Expanded = true;
             this.acegConsultas.Name = "acegConsultas";
             this.acegConsultas.Text = "Consultas";
             // 
@@ -135,15 +134,15 @@
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Name = "fluentDesignFormControl1";
             this.fluentDesignFormControl1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.fluentDesignFormControl1.Size = new System.Drawing.Size(894, 30);
+            this.fluentDesignFormControl1.Size = new System.Drawing.Size(1063, 51);
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             // 
             // VentanaPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(894, 478);
+            this.ClientSize = new System.Drawing.Size(1063, 543);
             this.ControlContainer = this.container;
             this.Controls.Add(this.container);
             this.Controls.Add(this.accordionControl1);

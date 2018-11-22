@@ -48,12 +48,13 @@ namespace GUI
 
                         textBox1.AppendText("\n");
                     }
+                    ShowReglas(principal.analyzer.ruleGenerator.associationRules);
                 }
             }
             textBox1.AppendText(mens);
 
         }
-
+        /*
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             textBox1.Text="";
@@ -76,7 +77,7 @@ namespace GUI
                 }
             }
             textBox1.AppendText(mens);
-        }
+        }*/
 
         private void MostrarReglas(List<Model.Rule> rules)
         {
@@ -92,7 +93,26 @@ namespace GUI
         {
             foreach(DataGridViewRow row in this.gridAsociationRules.SelectedRows)
             {
-                ShowRulesForm showRules = new ShowRulesForm();
+                
+            }
+        }
+
+        private void ShowReglas(List<Model.Rule> reglas)
+        {
+            gridAsociationRules.Columns.Clear();
+            DataGridViewColumn c1 = new DataGridViewTextBoxColumn();
+            c1.Name = "ANTECEDENTE";
+            DataGridViewColumn c2 = new DataGridViewTextBoxColumn();
+            c2.Name = "CONSECUENTE";
+            DataGridViewColumn c3 = new DataGridViewTextBoxColumn();
+            c3.Name = "CONFIANZA";
+            gridAsociationRules.Columns.Add(c1);
+            gridAsociationRules.Columns.Add(c2);
+            gridAsociationRules.Columns.Add(c3);
+
+            foreach (Model.Rule regla in reglas)
+            {
+                gridAsociationRules.Rows.Add(regla.antecedente.ToString(), regla.consecuente.ToString(), regla.confidence);
             }
         }
     }

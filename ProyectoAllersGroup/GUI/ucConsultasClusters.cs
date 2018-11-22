@@ -22,7 +22,9 @@ namespace GUI
         {
             InitializeComponent();
             gridViewCLusters.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//Clientes
+            
             dataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//Reglas
         }
 
@@ -46,7 +48,7 @@ namespace GUI
                         clientes.Add(elemento);
                     }*/
                     ShowClientes(clientes);
-                    ShowTex(clientes);
+                    ShowReglas(principal.analyzer.ruleGenerator.associationRules);
                 }
                 
             }
@@ -54,34 +56,36 @@ namespace GUI
 
         private void gridViewCLusters_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            
         }
 
         private void ShowClientes(List<Elemento> clientes)
         {
-            textBox1.Text = "";
-            textBox1.AppendText(clientes.Count.ToString());
-            /*dataGridView1.Columns.Clear();
-            dataGridView1.Rows.Clear();
-            DataGridViewColumn c1 = new DataGridViewTextBoxColumn();
-            c1.Name = "Codigo";
-            
-            dataGridView1.Columns.Add(c1);
-            foreach (Elemento cliente in clientes)
-            {
-                dataGridView1.Rows.Add(cliente.per);
-            }*/
             dataGridView1.DataSource = clientes;
         }
 
-        private void ShowTex(List<Elemento> elementos)
+        private void ShowReglas(List<Model.Rule> reglas)
         {
-            tbInfoClientes.Text = "";
-            foreach (Elemento e in elementos)
+            dataGridView2.Columns.Clear();
+            DataGridViewColumn c1 = new DataGridViewTextBoxColumn();
+            c1.Name = "ANTECEDENTE";
+            DataGridViewColumn c2 = new DataGridViewTextBoxColumn();
+            c2.Name = "CONSECUENTE";
+            DataGridViewColumn c3 = new DataGridViewTextBoxColumn();
+            c3.Name = "CONFIANZA";
+            dataGridView2.Columns.Add(c1);
+            dataGridView2.Columns.Add(c2);
+            dataGridView2.Columns.Add(c3);
+
+            foreach(Model.Rule regla in reglas)
             {
-                
-                tbInfoClientes.Text += e.id + " %" + e.per+"\n";
+                dataGridView2.Rows.Add(regla.antecedente.ToString(), regla.consecuente.ToString(), regla.confidence);
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

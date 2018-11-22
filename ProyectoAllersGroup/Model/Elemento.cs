@@ -9,7 +9,6 @@ namespace Model
     public class Elemento
     {
         public String id { get; }
-        public String per { get; set; }
         public double pertenencia { get; set; }
         public Cliente cliente { get; set; }
         

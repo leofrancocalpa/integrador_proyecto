@@ -118,8 +118,7 @@ namespace Model
                     //Console.WriteLine("Average ANtes");
                     //Console.WriteLine(Ci.agrupador.ToString() + e.cliente.codigo + "");
                     e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.cliente.codigo].Average();
-                    String d = Math.Truncate(e.pertenencia).ToString();
-                    e.per = d;
+                    e.pertenencia = Math.Round(e.pertenencia, 1);
                     //Console.WriteLine("Average despues");
                 }
             }

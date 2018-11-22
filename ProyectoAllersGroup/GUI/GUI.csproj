@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -76,12 +77,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowRulesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ShowRulesForm.Designer.cs">
-      <DependentUpon>ShowRulesForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ucConsultaItemSets.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +113,12 @@
     <Compile Include="ucPodarDatos.Designer.cs">
       <DependentUpon>ucPodarDatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucProgressIndicator.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucProgressIndicator.Designer.cs">
+      <DependentUpon>ucProgressIndicator.cs</DependentUpon>
+    </Compile>
     <Compile Include="VentanaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ucPodarDatos.resx">
       <DependentUpon>ucPodarDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucProgressIndicator.resx">
+      <DependentUpon>ucProgressIndicator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentanaPrincipal.resx">
       <DependentUpon>VentanaPrincipal.cs</DependentUpon>

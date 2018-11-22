@@ -24,7 +24,8 @@ namespace ConsoleAppTester
                 Data data = new Data(false);
                 FIGeneration fIGeneration = new FIGeneration();
                 fIGeneration.minSupport = minSupport;
-                RuleGenerator ruleGenerator = new RuleGenerator(minConfidence/100);
+                RuleGenerator ruleGenerator = new RuleGenerator();
+                ruleGenerator.minConfidence = minConfidence;
 
                 ClustersGenerator clustersGenerator = new ClustersGenerator();
                 clustersGenerator.minPertencia = 0.60;
@@ -46,9 +47,9 @@ namespace ConsoleAppTester
                 Console.WriteLine("Itemsets totales: " + fi.Count);
                 Console.WriteLine("---------------------------------------- \n Frequents ItemSe Generados... \n Creando Reglas de asociacion ...");
                 //Generando Reglas 
-                ruleGenerator.generarTodos(fiTotales, data);
-                Console.WriteLine(ruleGenerator.associationRUles.Count+"++++++++");
-                foreach(Rule rule in ruleGenerator.associationRUles)
+                ruleGenerator.GenerarReglas(fi, fIGeneration);
+                Console.WriteLine(ruleGenerator.associationRules.Count+"++++++++");
+                foreach(Rule rule in ruleGenerator.associationRules)
                 {
                     Console.WriteLine(rule.antecedente.ToString() + " ->" + rule.consecuente.ToString() + " " + rule.confidence);
                 }
