@@ -19,7 +19,7 @@ namespace ConsoleAppTester
                 Console.WriteLine("Ingrese minSupport :");
                 double minSupport = Convert.ToDouble(Console.ReadLine()) / 100;
                 Console.WriteLine("Ingrese minConfidence :");
-                double minConfidence = Convert.ToDouble(Console.ReadLine());
+                double minConfidence = Convert.ToDouble(Console.ReadLine())/100;
 
                 Data data = new Data(false);
                 FIGeneration fIGeneration = new FIGeneration();
