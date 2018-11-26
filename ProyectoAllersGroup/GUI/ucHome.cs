@@ -11,17 +11,12 @@ using DevExpress.XtraEditors;
 
 namespace GUI
 {
-    public partial class ucProgressIndicator : DevExpress.XtraEditors.XtraUserControl
+    public partial class ucHome : DevExpress.XtraEditors.XtraUserControl
     {
         public VentanaPrincipal principal { get; set; }
-        public ucProgressIndicator()
+        public ucHome()
         {
             InitializeComponent();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            principal.ShowHome();
         }
     }
 }

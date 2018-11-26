@@ -175,9 +175,9 @@
             this.lblMinConfidence.AutoSize = true;
             this.lblMinConfidence.Location = new System.Drawing.Point(29, 38);
             this.lblMinConfidence.Name = "lblMinConfidence";
-            this.lblMinConfidence.Size = new System.Drawing.Size(147, 19);
+            this.lblMinConfidence.Size = new System.Drawing.Size(134, 19);
             this.lblMinConfidence.TabIndex = 0;
-            this.lblMinConfidence.Text = "Confidencia Minima";
+            this.lblMinConfidence.Text = "Confianza Minima";
             // 
             // label2
             // 
@@ -200,6 +200,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 13;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // ucGenReglas
             // 

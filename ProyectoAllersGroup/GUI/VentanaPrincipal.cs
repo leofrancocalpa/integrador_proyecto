@@ -21,8 +21,7 @@ namespace GUI
         private ucGenClusters ucGenC;
         private ucConsultaItemSets ucCItemSets;
         private ucConsultasClusters ucCCluster;
-
-
+        private ucHome home;
         private Boolean procesing;
 
         private ucProgressIndicator progressPanel;
@@ -51,6 +50,11 @@ namespace GUI
             ucCCluster.principal = this;
 
             progressPanel = new ucProgressIndicator();
+            progressPanel.principal = this;
+
+            home = new ucHome();
+            home.principal = this;
+            ShowHome();
         }
 
         public void PodarDatos(double minOcurrencias)
@@ -212,6 +216,26 @@ namespace GUI
                 ucCCluster.BringToFront();
             }
             
+        }
+
+        private delegate void SHome();
+        public void ShowHome()
+        {
+            if (this.InvokeRequired)
+            {
+                ProgresInd delegado = new ProgresInd(ShowHome);
+                this.Invoke(delegado);
+            }
+            else
+            {
+                if (!container.Controls.Contains(home))
+                {
+                    container.Controls.Add(home);
+                    home.Dock = DockStyle.Fill;
+                    home.BringToFront();
+                }
+                home.BringToFront();
+            }
         }
 
         //Show prgess panel

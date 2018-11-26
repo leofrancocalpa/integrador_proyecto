@@ -48,5 +48,10 @@ namespace GUI
             tbNumCLientes.AppendText("");
             tbNumArticulos.AppendText("");
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
+        }
     }
 }

@@ -107,6 +107,12 @@
     <Compile Include="ucGenReglas.Designer.cs">
       <DependentUpon>ucGenReglas.cs</DependentUpon>
     </Compile>
+    <Compile Include="ucHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucHome.Designer.cs">
+      <DependentUpon>ucHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucPodarDatos.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     <EmbeddedResource Include="ucGenReglas.resx">
       <DependentUpon>ucGenReglas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucHome.resx">
+      <DependentUpon>ucHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucPodarDatos.resx">
       <DependentUpon>ucPodarDatos.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,6 +187,24 @@
       <Project>{e27bd0c4-6373-41ce-9005-4e28cb51e75a}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graphic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flechas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Productos.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\docts.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -48,7 +48,8 @@ namespace GUI
 
                         textBox1.AppendText("\n");
                     }
-                    ShowReglas(principal.analyzer.ruleGenerator.associationRules);
+                    List<Model.Rule> rules = principal.analyzer.ruleGenerator.associationRules;//.Where(x => (x.padre.Equals(x.padre, itemSet))).ToList();
+                    ShowReglas(rules);
                 }
             }
             textBox1.AppendText(mens);
@@ -100,6 +101,7 @@ namespace GUI
         private void ShowReglas(List<Model.Rule> reglas)
         {
             gridAsociationRules.Columns.Clear();
+            gridAsociationRules.Rows.Clear();
             DataGridViewColumn c1 = new DataGridViewTextBoxColumn();
             c1.Name = "ANTECEDENTE";
             DataGridViewColumn c2 = new DataGridViewTextBoxColumn();
@@ -114,6 +116,11 @@ namespace GUI
             {
                 gridAsociationRules.Rows.Add(regla.antecedente.ToString(), regla.consecuente.ToString(), regla.confidence);
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
         }
     }
 }

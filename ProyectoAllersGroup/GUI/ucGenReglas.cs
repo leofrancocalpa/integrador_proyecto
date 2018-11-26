@@ -21,10 +21,15 @@ namespace GUI
 
         private void btnGenerar_Click(object sender, EventArgs e)
         {
-            double confianza = Convert.ToDouble(tbMinConfidence.Text);
+            double confianza = Convert.ToDouble(tbMinConfidence.Text)/100;
             btnGenerar.Enabled = false;
             principal.GenerarReglas(confianza);
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
         }
     }
 }

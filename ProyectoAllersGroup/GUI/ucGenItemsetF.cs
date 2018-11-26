@@ -48,5 +48,10 @@ namespace GUI
             tbMinSupport.ReadOnly = true;
             tbNumMaxConjunos.ReadOnly = true;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
+        }
     }
 }

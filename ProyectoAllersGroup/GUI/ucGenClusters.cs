@@ -39,5 +39,10 @@ namespace GUI
             tbNumClusters.AppendText(nC);
             tbMinPertenencia.ReadOnly = true;
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
+        }
     }
 }

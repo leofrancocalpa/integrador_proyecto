@@ -48,7 +48,8 @@ namespace GUI
                         clientes.Add(elemento);
                     }*/
                     ShowClientes(clientes);
-                    ShowReglas(principal.analyzer.ruleGenerator.associationRules);
+                    List<Model.Rule> rules = principal.analyzer.ruleGenerator.associationRules.Where(x => (x.padre.Equals(x.padre, cluster.agrupador))).ToList();
+                    ShowReglas(rules);
                 }
                 
             }
@@ -86,6 +87,11 @@ namespace GUI
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            principal.ShowHome();
         }
     }
 }
