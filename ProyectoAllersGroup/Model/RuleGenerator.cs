@@ -76,6 +76,7 @@ namespace Model
 
                 CalcularConfianza(fIGeneration);
                 Prunning();
+                FormatConfidence();
             }
         }
 
@@ -114,9 +115,9 @@ namespace Model
             foreach(Rule rule in associationRules)
             {
                 double numerador = rule.padre.support;
-                double denominador = fIGeneration.candidates.First(x => x.Equals(x, rule.consecuente)).support;
+                double denominador = fIGeneration.candidates.First(x => x.Equals(x, rule.antecedente)).support;
                 double confianza = numerador / denominador;
-                rule.confidence = Math.Round(confianza,1);
+                rule.confidence = confianza;
             }
         }
 
@@ -129,6 +130,15 @@ namespace Model
                     associationRules.RemoveAt(i);
                 }
                 
+            }
+        }
+
+        private void FormatConfidence()
+        {
+            foreach(Rule rule in associationRules)
+            {
+
+                rule.confidence = Math.Round(rule.confidence*100,2);
             }
         }
         
