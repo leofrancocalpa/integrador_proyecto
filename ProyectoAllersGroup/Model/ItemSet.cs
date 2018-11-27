@@ -43,7 +43,7 @@ namespace Model
             return salida;
         }
 
-        public String ToString()
+        public String ToStringItems()
         {
             String salida = "";
             foreach(KeyValuePair<String, Item> i in items)
@@ -55,7 +55,7 @@ namespace Model
 
         public void generarId()
         {
-            id = ToString();
+            id = ToStringItems();
         }
 
         public bool Equals(ItemSet x, ItemSet y)

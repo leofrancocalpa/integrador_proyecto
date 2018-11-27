@@ -69,6 +69,7 @@ namespace Model
                             newRule.antecedente = ant1;
                             newRule.consecuente = con1;
                             newRule.padre = itemSet;
+                            
                             associationRules.Add(newRule);
                         }
                     }
@@ -137,7 +138,8 @@ namespace Model
         {
             foreach(Rule rule in associationRules)
             {
-
+                rule.ANTECEDENTE = rule.antecedente.ToStringItems();
+                rule.CONSECUENTE = rule.consecuente.ToStringItems();
                 rule.confidence = Math.Round(rule.confidence*100,2);
             }
         }

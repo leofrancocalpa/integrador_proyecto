@@ -19,7 +19,7 @@ namespace Model
             agrupador = cen;
             elementos = new List<Elemento>();
             //pertenencias = new List<double>();
-            Id = cen.ToString();
+            Id = cen.ToStringItems();
         }
 
     }

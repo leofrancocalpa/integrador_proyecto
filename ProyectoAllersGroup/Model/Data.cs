@@ -21,6 +21,7 @@ namespace Model
         public Dictionary<String, Item> frequentItems { get; set; }
 
         private Dictionary<String, String> trClientes { get; set; }
+        private Dictionary<String, Item> articulos;
 
         public Data(Boolean test)
         {
@@ -41,6 +42,35 @@ namespace Model
         {
             route = "..\\..\\..\\Data\\datosTest.csv";
 
+        }
+
+        public void LoadArticulos()
+        {
+            articulos = new Dictionary<string, Item>();
+            try
+            {
+                StreamReader sr = new StreamReader(routeArticulos);
+                String line = sr.ReadLine();
+                line = sr.ReadLine();
+                line = sr.ReadLine();
+                while (line != null)
+                {
+                    String[] datosArticulo = line.Split(';');
+                    if (!articulos.ContainsKey(datosArticulo[0]))
+                    {
+                        //Console.WriteLine("Articulosososos "+ datosArticulo[1]);
+                        Item i = new Item(datosArticulo[0]);
+                        i.name = datosArticulo[1];
+                        articulos.Add(i.cod, i);
+                    }
+                    line = sr.ReadLine();
+                }
+                sr.Close();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Exception LoadArticulos: " + e.Message + "\n" + e.StackTrace);
+            }
         }
 
         public void LoadClientes()
@@ -133,8 +163,9 @@ namespace Model
             }
         }
 
-        public Dictionary<String, Item> PodarItemsPorSupport(double minSupport)
+        public Dictionary<String, Item> PodarItemsPorSupport(double minSupport0)
         {
+            double minSupport = 0.018;
             foreach(KeyValuePair<String, Item> pairs in items)
             {
                 int c = pairs.Value.support;
@@ -190,6 +221,7 @@ namespace Model
 
         public void PodarArticulos()
         {
+            LoadArticulos();
             Dictionary<String, Item> itemsIntransaction = new Dictionary<string, Item>();
             foreach(KeyValuePair<String, Transaction> t in transactions)
             {
@@ -210,7 +242,16 @@ namespace Model
                     items.Remove(item.Key);
                 }
             }
-            Console.WriteLine("mmmmm " + items.Count);
+
+            foreach(KeyValuePair<String, Item> item in items)
+            {
+                if (articulos.ContainsKey(item.Key))
+                {
+                    item.Value.name = articulos[item.Key].name;
+                    //Console.WriteLine("Name of item : " + item.Value.name);
+                }
+            }
+            Console.WriteLine("Numeros de articulos en todas las transacciones: " + items.Count);
         }
     }
 }

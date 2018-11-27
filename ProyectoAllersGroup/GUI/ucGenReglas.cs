@@ -31,5 +31,12 @@ namespace GUI
         {
             principal.ShowHome();
         }
+
+        public void LlenarDatos(String p1, String p2, String p3)
+        {
+            tbNumFIS.Text = p1;
+            tbMinSupport.Text = p2;
+            tbNumReglas.Text = p3;
+        }
     }
 }

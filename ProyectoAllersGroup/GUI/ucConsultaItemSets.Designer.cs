@@ -89,7 +89,6 @@
             this.gridAsociationRules.Size = new System.Drawing.Size(371, 129);
             this.gridAsociationRules.TabIndex = 5;
             this.gridAsociationRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAsociationRules_CellClick);
-            this.gridAsociationRules.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridAsociationRules_RowHeaderMouseClick);
             // 
             // lblItemSetsFrecuentes
             // 

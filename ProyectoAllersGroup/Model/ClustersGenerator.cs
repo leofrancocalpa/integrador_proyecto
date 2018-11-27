@@ -60,29 +60,29 @@ namespace Model
                         {
                             if (cluster.elementos.Contains(elementos[transaccion.Value.codCliente]))
                             {
-                                if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
+                                if (pertenencias.ContainsKey(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
+                                    pertenencias[cluster.agrupador.ToStringItems() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
                                 }
                                 else
                                 {
                                     List<double> list = new List<double>();
                                     list.Add(valor / cluster.agrupador.items.Count);
-                                    pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
+                                    pertenencias.Add(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente, list);
                                 }
                             }
                             else
                             {
                                 cluster.elementos.Add(elementos[transaccion.Value.codCliente]);
-                                if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
+                                if (pertenencias.ContainsKey(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente))
                                 {
-                                    pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
+                                    pertenencias[cluster.agrupador.ToStringItems() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count) * 100);
                                 }
                                 else
                                 {
                                     List<double> list = new List<double>();
                                     list.Add(valor / cluster.agrupador.items.Count);
-                                    pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
+                                    pertenencias.Add(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente, list);
                                 }
                             }
                         }
@@ -91,15 +91,15 @@ namespace Model
                             Elemento elemento = new Elemento(clientes[transaccion.Value.codCliente], (valor/ cluster.agrupador.items.Count));
                             elementos.Add(elemento.id, elemento);
                             cluster.elementos.Add(elemento);
-                            if (pertenencias.ContainsKey(cluster.agrupador.ToString() + transaccion.Value.codCliente))
+                            if (pertenencias.ContainsKey(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente))
                             {
-                                pertenencias[cluster.agrupador.ToString() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count)*100);
+                                pertenencias[cluster.agrupador.ToStringItems() + transaccion.Value.codCliente].Add((valor / cluster.agrupador.items.Count)*100);
                             }
                             else
                             {
                                 List<double> list = new List<double>();
                                 list.Add(valor / cluster.agrupador.items.Count);
-                                pertenencias.Add(cluster.agrupador.ToString() + transaccion.Value.codCliente, list);
+                                pertenencias.Add(cluster.agrupador.ToStringItems() + transaccion.Value.codCliente, list);
                             }
                         }
                     }   
@@ -117,7 +117,7 @@ namespace Model
                 {
                     //Console.WriteLine("Average ANtes");
                     //Console.WriteLine(Ci.agrupador.ToString() + e.cliente.codigo + "");
-                    e.pertenencia = pertenencias[Ci.agrupador.ToString() + e.cliente.codigo].Average();
+                    e.pertenencia = pertenencias[Ci.agrupador.ToStringItems() + e.cliente.codigo].Average();
                     e.pertenencia = Math.Round(e.pertenencia, 1);
                     //Console.WriteLine("Average despues");
                 }

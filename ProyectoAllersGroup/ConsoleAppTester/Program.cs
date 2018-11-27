@@ -17,7 +17,7 @@ namespace ConsoleAppTester
             try
             {
                 Console.WriteLine("Ingrese minSupport :");
-                double minSupport = Convert.ToDouble(Console.ReadLine()) / 100;
+                double minSupport = 0.005;//Convert.ToDouble(Console.ReadLine()) / 100;
                 Console.WriteLine("Ingrese minConfidence :");
                 double minConfidence = Convert.ToDouble(Console.ReadLine())/100;
 
@@ -33,7 +33,7 @@ namespace ConsoleAppTester
                 data.LoadTransactions();
                 data.LoadClientes();
                 Console.WriteLine("--> " + data.transactions.Count);
-                data.PodarTransacciones(0.01);
+                data.PodarTransacciones(0.003);
                 Console.WriteLine("--> " + data.transactions.Count);
                 data.PodarClientes();
                 Console.WriteLine("Clientes -> " + data.clientes.Count);
@@ -51,7 +51,7 @@ namespace ConsoleAppTester
                 Console.WriteLine(ruleGenerator.associationRules.Count+"++++++++");
                 foreach(Rule rule in ruleGenerator.associationRules)
                 {
-                    Console.WriteLine(rule.antecedente.ToString() + " ->" + rule.consecuente.ToString() + " " + rule.confidence);
+                    Console.WriteLine(rule.antecedente.ToStringItems() + " ->" + rule.consecuente.ToStringItems() + " " + rule.confidence);
                 }
 
                 //Generando CLusters
@@ -81,7 +81,7 @@ namespace ConsoleAppTester
 
                 foreach(Cluster c in clustersGenerator.clusters)
                 {
-                    Console.WriteLine("Cluster: "+c.agrupador.ToString());
+                    Console.WriteLine("Cluster: "+c.agrupador.ToStringItems());
                     foreach(Elemento e in c.elementos)
                     {
                         Console.WriteLine("Elemento: "+e.id+" pertenece un "+e.pertenencia+" al cluster");

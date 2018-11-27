@@ -121,6 +121,10 @@ namespace GUI
         private void GenRules()
         {
             analyzer.GenerarReglas();
+            String p1 = analyzer.fIGeneration.candidates.Where(x => x.items.Count > 1).ToList().Count.ToString();
+            String p2 = (analyzer.minSupport*100).ToString();
+            String p3 = (analyzer.ruleGenerator.associationRules.Count).ToString();
+            ucGenR.LlenarDatos(p1,p2,p3);
             Thread.Sleep(2500);
             procesing = false;
             ShowGenerarReglas();

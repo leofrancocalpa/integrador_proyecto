@@ -49,7 +49,7 @@ namespace GUI
                     }*/
                     ShowClientes(clientes);
                     List<Model.Rule> rules = principal.analyzer.ruleGenerator.associationRules.Where(x => (x.padre.Equals(x.padre, cluster.agrupador))).ToList();
-                    ShowReglas(rules);
+                    MostrarReglas(rules);
                 }
                 
             }
@@ -63,6 +63,11 @@ namespace GUI
         private void ShowClientes(List<Elemento> clientes)
         {
             dataGridView1.DataSource = clientes;
+        }
+
+        private void MostrarReglas(List<Model.Rule> rules)
+        {
+            dataGridView2.DataSource = rules;
         }
 
         private void ShowReglas(List<Model.Rule> reglas)
@@ -80,18 +85,40 @@ namespace GUI
 
             foreach(Model.Rule regla in reglas)
             {
-                dataGridView2.Rows.Add(regla.antecedente.ToString(), regla.consecuente.ToString(), regla.confidence);
+                dataGridView2.Rows.Add(regla.antecedente.ToStringItems(), regla.consecuente.ToStringItems(), regla.confidence);
             }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            foreach (DataGridViewRow row in this.dataGridView1.SelectedRows)
+            {
+                Elemento ele = row.DataBoundItem as Elemento;
+                if (ele != null)
+                {
+                    String ant = ele.cliente.codigo+"\n"+ele.cliente.ciudad+"\n"+ele.cliente.departamento+"\n"+ele.cliente.groupName;
+                    MessageBox.Show(ant);
+                }
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             principal.ShowHome();
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (DataGridViewRow row in this.dataGridView2.SelectedRows)
+            {
+                Model.Rule rule = row.DataBoundItem as Model.Rule;
+                if (rule != null)
+                {
+                    String ant = rule.ToStringAntecedente();
+                    String con = rule.ToStringConsecuente();
+                    MessageBox.Show("Si los clientes del Cluster compran: \n" + ant + " \nPodrían comprar: \n" + con + "\n" + "con una confianza de: " + rule.confidence + "%");
+                }
+            }
         }
     }
 }
